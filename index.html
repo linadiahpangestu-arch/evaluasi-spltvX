@@ -65,7 +65,6 @@
     }
   </style>
 </head>
-
 <body>
   <header>
     <h1>Evaluasi Interaktif — Sistem Persamaan Linear Tiga Variabel (SPLTV)</h1>
@@ -260,7 +259,7 @@ const QUESTIONS = [
       const cls = document.getElementById('studentClass').value.trim();
       if (!name || !cls) return alert('Isi nama dan kelas terlebih dahulu!');
       document.getElementById('identity').classList.add('hidden');
-      document.getElementById('intro').classList.add('hidden');
+      document.getElementById('intro').classList.add('hidden'); 
       const quizDiv = document.getElementById('quiz');
       quizDiv.classList.remove('hidden');
       quizDiv.innerHTML = '';
