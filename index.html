@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Evaluasi Interaktif SPLTV - Kelas X</title>
+<title>Evaluasi Sistem Persamaan Linear Tiga Variabel (SPLTV) Kelas X
+Disusun oleh: Lina Diah Pangestu</title>
 <style>
 body {
   font-family: "Segoe UI", sans-serif;
@@ -58,7 +59,8 @@ button:hover { background: #4b86b4; }
 </head>
 <body>
 <div class="container">
-  <h1>Evaluasi Interaktif SPLTV (Kelas X)</h1>
+  <h1>Evaluasi Sistem Persamaan Linear Tiga Variabel (SPLTV) Kelas X
+Disusun oleh: Lina Diah Pangestu</h1>
 
   <div id="intro">
     <!-- Petunjuk & Motivasi -->
@@ -110,7 +112,7 @@ const QUESTIONS = [
   },
   {
     id: 2, type: "mcq",
-    q: "Dalam konteks pembelian buah: 2 apel, 3 jeruk, dan 4 mangga seharga Rp56.000. Persamaan yang sesuai adalah...",
+    q: "Dalam pembelian buah: 2 apel, 3 jeruk, dan 4 mangga seharga Rp56.000. Persamaan yang sesuai adalah...",
     options: ["2x + 3y + 4z = 56000", "3x + 2y + 4z = 56000", "4x + 3y + 2z = 56000"],
     answer: 0, cat: "Modeling",
     fb_true: "✅ Tepat — kamu bisa mengonversi informasi dari teks menjadi model matematika.",
@@ -220,14 +222,22 @@ const QUESTIONS = [
   },
 
   // ===== PEDAGOGI =====
-  {
-    id: 15, type: "mcq",
-    q: "Sebagai guru, pendekatan yang baik untuk mengenalkan SPLTV kepada siswa adalah...",
-    options: ["Memberi rumus langsung", "Melalui masalah kontekstual dan diskusi kelompok", "Hanya latihan hitungan", "Menyalin contoh dari papan tulis"],
-    answer: 1, cat: "Pedagogi",
-    fb_true: "✅ Sangat baik — pembelajaran kontekstual membantu siswa memahami makna SPLTV.",
-    fb_false: "❌ Coba gunakan pendekatan yang mengaitkan konsep dengan kehidupan sehari-hari."
-  }
+ {
+  id: 15,
+  type: "mcq",
+  q: "Kalau kamu menjadi guru matematika, cara apa yang paling baik untuk membantu teman-teman memahami materi SPLTV?",
+  options: [
+    "Langsung memberi rumus dan contoh jadi",
+    "Mengajak siswa memecahkan masalah sehari-hari dan berdiskusi bersama",
+    "Memberi banyak latihan hitungan tanpa penjelasan",
+    "Menyuruh siswa menyalin contoh dari papan tulis"
+  ],
+  answer: 1,
+  cat: "Pedagogi",
+  fb_true: "✅ Hebat! Kamu memilih cara yang paling baik. Dengan mengajak siswa memecahkan masalah dari kehidupan sehari-hari dan berdiskusi, mereka akan lebih paham makna dari setiap langkah penyelesaian SPLTV.",
+  fb_false: "❌ Belum tepat. Coba pilih cara yang membuat siswa aktif berpikir dan menghubungkan pelajaran dengan kehidupan nyata. Dengan begitu, belajar akan terasa lebih mudah dan menyenangkan."
+}
+
 ];
 
 // ==========================
@@ -294,17 +304,71 @@ function finishAndShowResults() {
     resultHTML += `<p><b>${q.id}. ${q.q}</b><br>${correct ? q.fb_true : q.fb_false}</p>`;
   });
 
-  // Analisis hasil sederhana & rekomendasi
-  let analysis = "<h3>Analisis Hasil:</h3><ul>";
-  for (let cat in catScores) {
-    const cs = catScores[cat];
-    const rate = Math.round((cs.correct / cs.total) * 100);
-    let desc = rate >= 80 ? "Sangat baik — kamu sudah memahami bagian ini dengan mantap."
-      : rate >= 60 ? "Cukup baik — kamu paham dasarnya, tapi masih bisa lebih lancar."
-      : "Perlu perhatian — ayo pelajari ulang bagian ini dan minta bimbingan guru.";
-    analysis += `<li><b>${cat}</b>: ${rate}% benar. ${desc}</li>`;
+  // ===============================
+// ✨ Analisis Hasil & Rekomendasi Detail
+// ===============================
+let analysis = "<h3>Analisis Hasil Belajar:</h3><ul>";
+
+for (let cat in catScores) {
+  const cs = catScores[cat];
+  const rate = Math.round((cs.correct / cs.total) * 100);
+  let desc = "";
+  let mastery = "";
+  let suggestion = "";
+
+  if (rate >= 85) {
+    mastery = "✅ Sangat Baik";
+    desc = "Kamu sudah menguasai materi ini dengan sangat baik. Pemahamanmu kuat dan langkah-langkahmu dalam menyelesaikan soal sudah tepat.";
+    suggestion = "Pertahankan kemampuan ini dengan terus melatih soal yang menantang agar semakin percaya diri.";
+  } 
+  else if (rate >= 70) {
+    mastery = "🟡 Cukup Baik";
+    desc = "Kamu sudah memahami dasar materi ini, namun masih perlu latihan untuk meningkatkan ketepatan dan kecepatan dalam menjawab soal.";
+    suggestion = "Ulangi latihan dengan memperhatikan langkah penyelesaian dan pahami alasan di balik setiap operasi yang kamu lakukan.";
+  } 
+  else if (rate >= 50) {
+    mastery = "🟠 Perlu Ditingkatkan";
+    desc = "Kamu sudah mencoba memahami bagian ini, tapi masih sering keliru. Mungkin kamu perlu lebih banyak contoh konkret dan latihan tambahan.";
+    suggestion = "Cobalah belajar bersama teman atau tanyakan ke guru tentang langkah-langkah yang belum kamu pahami.";
+  } 
+  else {
+    mastery = "🔴 Perlu Perhatian Khusus";
+    desc = "Kamu masih kesulitan pada bagian ini. Tidak apa-apa — ini saatnya memperbaiki pemahaman dari awal dengan bantuan guru atau sumber belajar lain.";
+    suggestion = "Pelajari ulang konsep dasarnya dari contoh sederhana, lalu coba lagi soal yang mirip dengan bimbingan guru atau video pembelajaran.";
   }
-  analysis += "</ul>";
+
+  // Penjelasan per kategori
+  let detail = "";
+  switch (cat) {
+    case "Modeling":
+      detail = "Kemampuan ini berkaitan dengan cara mengubah cerita menjadi bentuk persamaan SPLTV. Fokus pada mengenali variabel dan menulis hubungan antar besaran dengan tepat.";
+      break;
+    case "Perhitungan":
+      detail = "Bagian ini mengukur ketepatanmu dalam menghitung nilai x, y, dan z menggunakan metode eliminasi atau substitusi. Perhatikan langkah agar tidak salah hitung.";
+      break;
+    case "Konsep":
+      detail = "Kemampuan ini berhubungan dengan pemahaman dasar tentang arti SPLTV, jumlah persamaan dan variabel, serta bentuk umumnya.";
+      break;
+    case "Strategi":
+      detail = "Bagian ini melihat kemampuanmu memilih cara penyelesaian paling efisien, misalnya kapan harus menggunakan eliminasi atau substitusi.";
+      break;
+    case "Pedagogi":
+      detail = "Kategori ini menilai bagaimana kamu memahami cara terbaik mengajarkan atau menjelaskan SPLTV agar mudah dipahami oleh orang lain.";
+      break;
+  }
+
+  analysis += `
+    <li>
+      <b>${cat}</b> — <i>${mastery}</i> (${rate}% benar)<br>
+      <span style="color:#333;">${desc}</span><br>
+      <u>Penjelasan:</u> ${detail}<br>
+      <u>Saran:</u> ${suggestion}
+    </li><br>
+  `;
+}
+
+analysis += "</ul>";
+
 
   const rekom = `
   <h3>Rekomendasi Belajar:</h3>
