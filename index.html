@@ -1,300 +1,237 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Evaluasi — Sistem Persamaan Linear Tiga Variabel (SPLTV) Kelas X
-Disusun oleh: Lina Diah Pangestu</title>
-<style>
-body {
-  font-family: "Segoe UI", sans-serif;
-  background: #f5f7fb;
-  margin: 0;
-  padding: 20px;
-}
-.container {
-  max-width: 850px;
-  margin: auto;
-  background: #fff;
-  border-radius: 12px;
-  padding: 20px 30px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-h1, h2 {
-  text-align: center;
-  color: #2a4d69;
-}
-button {
-  background: #2a4d69;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 8px;
-  cursor: pointer;
-}
-button:hover { background: #4b86b4; }
-.hidden { display: none; }
-.question {
-  border-bottom: 1px solid #ddd;
-  padding: 10px 0;
-}
-.feedback { margin-top: 5px; font-style: italic; }
-#summary {
-  background: #eef6fb;
-  border-radius: 10px;
-  padding: 15px;
-  margin-top: 20px;
-}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Evaluasi Interaktif SPLTV Kelas X</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f9fafb;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      text-align: center;
+      background: linear-gradient(135deg, #2563eb, #3b82f6);
+      color: white;
+      padding: 2rem 1rem;
+      border-bottom-left-radius: 2rem;
+      border-bottom-right-radius: 2rem;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+    main {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 1.5rem;
+      background: white;
+      border-radius: 1rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    section {
+      margin-bottom: 2rem;
+    }
+    .btn {
+      display: inline-block;
+      background-color: #2563eb;
+      color: white;
+      padding: 0.7rem 1.2rem;
+      border-radius: 0.5rem;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: 0.3s;
+    }
+    .btn:hover { background-color: #1e40af; }
+    .question { margin-bottom: 1.5rem; }
+    .feedback { font-style: italic; margin-top: 0.5rem; }
+    .hidden { display: none; }
+    input[type="text"], select {
+      padding: 0.5rem;
+      border-radius: 0.5rem;
+      border: 1px solid #ccc;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    #summary {
+      background: #f0f9ff;
+      padding: 1rem;
+      border-radius: 0.8rem;
+      margin-top: 1rem;
+    }
+  </style>
 </head>
+
 <body>
-<div class="container">
-  <h1>Evaluasi — Sistem Persamaan Linear Tiga Variabel (SPLTV) Kelas X</h1>
-  <section id="intro" class="p-6 text-center bg-gray-50 rounded-xl shadow-md max-w-2xl mx-auto my-8">
-  <h2 class="text-2xl font-semibold mb-4">Petunjuk & Motivasi</h2>
-  <p class="text-lg text-gray-700 leading-relaxed">
-    Kerjakan <strong>15 soal</strong> berikut (campuran pilihan ganda & isian singkat).  
-    Tidak ada pemeriksaan jawaban per soal — selesaikan semua, lalu klik 
-    <em><strong>"Selesai & Lihat Hasil"</strong></em>.  
-    Jawaban akan dinilai otomatis.
-  </p>
-  <p class="mt-4 text-lg text-blue-700 font-medium">
-    Kerjakan dengan jujur dan percaya diri — kamu pasti bisa!  
-    Setiap langkah yang kamu ambil akan membawamu lebih dekat pada pemahaman yang lebih baik 💪✨
-  </p>
-</section>
-  <div id="intro">
-    <p>Masukkan data diri terlebih dahulu sebelum mulai:</p>
-    <label>Nama: <input type="text" id="studentName" required></label><br><br>
-    <label>Kelas: <input type="text" id="studentClass" required></label><br><br>
-    <button onclick="startTest()">Mulai Evaluasi</button>
-  </div>
+  <header>
+    <h1>Evaluasi Interaktif — Sistem Persamaan Linear Tiga Variabel (SPLTV)</h1>
+    <p>Kelas X SMA / SMK</p>
+  </header>
 
-  <div id="quizSection" class="hidden"></div>
+  <main>
+    <!-- 🟦 PETUNJUK & MOTIVASI -->
+    <section id="intro" class="p-6 text-center bg-gray-50 rounded-xl shadow-md max-w-2xl mx-auto my-8">
+      <h2 class="text-2xl font-semibold mb-4">Petunjuk & Motivasi</h2>
+      <p class="text-lg text-gray-700 leading-relaxed">
+        Kerjakan <strong>15 soal</strong> berikut (campuran pilihan ganda & isian singkat).<br>
+        Tidak ada pemeriksaan jawaban per soal — selesaikan semua, lalu klik 
+        <em><strong>"Selesai &amp; Lihat Hasil"</strong></em>.<br>
+        Jawaban akan dinilai otomatis.
+      </p>
+      <p class="mt-4 text-lg text-blue-700 font-medium">
+        Kerjakan dengan jujur dan percaya diri — kamu pasti bisa!<br>
+        Setiap langkah yang kamu ambil akan membawamu lebih dekat pada pemahaman yang lebih baik 💪✨
+      </p>
+    </section>
 
-  <div id="resultSection" class="hidden">
-    <h2>Hasil Evaluasi</h2>
-    <div id="summary"></div>
-    <button onclick="printSummary()">Cetak Hasil</button>
-    <button onclick="restartTest()">Mulai Ulang</button>
-  </div>
-</div>
+    <!-- 🟩 FORM IDENTITAS -->
+    <section id="identity">
+      <h2>Identitas Peserta</h2>
+      <label>Nama:</label>
+      <input type="text" id="studentName" placeholder="Masukkan namamu di sini">
+      <br><br>
+      <label>Kelas:</label>
+      <input type="text" id="studentClass" placeholder="Misal: X IPA 1">
+      <br><br>
+      <button class="btn" onclick="startTest()">Mulai Evaluasi</button>
+    </section>
 
-<script>
-// ==========================
-// 1️⃣ DAFTAR 15 SOAL SPLTV
-// ==========================
-const QUESTIONS = [
-  // --- MODELING ---
-  {
-    id: 1, type: "mcq",
-    q: "Rani membeli 5 kg apel, 2 kg jeruk, dan 3 kg anggur dengan total Rp125.000,00. Bentuk persamaan matematikanya adalah...",
-    options: ["5x + 2y + 3z = 125000", "2x + 5y + 3z = 125000", "5x + 3y + 2z = 125000"],
-    answer: 0, cat: "Modeling",
-    fb_true: "✅ Benar — Kamu sudah mampu mengubah kalimat menjadi model matematika SPLTV dengan tepat.",
-    fb_false: "❌ Salah — Perhatikan bahwa total harga harus berada di sisi kanan tanda sama dengan (=)."
-  },
-  {
-    id: 2, type: "mcq",
-    q: "Bentuk umum SPLTV yang benar adalah...",
-    options: ["ax + by + cz = d", "ax + by = c", "ax = by + cz"],
-    answer: 0, cat: "Konsep",
-    fb_true: "✅ Tepat — SPLTV memiliki tiga variabel dalam satu sistem linear.",
-    fb_false: "❌ Salah — Ingat bahwa SPLTV selalu memiliki tiga variabel dan tanda sama dengan (=)."
-  },
-  {
-    id: 3, type: "mcq",
-    q: "Dalam konteks penjualan, jika 2 roti, 3 donat, dan 4 kue seharga Rp56.000, maka bentuk persamaannya adalah...",
-    options: ["2x + 3y + 4z = 56000", "3x + 2y + 4z = 56000", "4x + 3y + 2z = 56000"],
-    answer: 0, cat: "Modeling",
-    fb_true: "✅ Benar — Kamu dapat mengubah masalah kontekstual menjadi bentuk persamaan.",
-    fb_false: "❌ Salah — Urutan koefisien harus sesuai dengan urutan barang yang disebut."
-  },
-  {
-    id: 4, type: "mcq",
-    q: "Bentuk SPLTV yang dapat mewakili harga apel (x), jeruk (y), dan mangga (z) jika 3 apel, 4 jeruk, dan 2 mangga seharga Rp85.000 adalah...",
-    options: ["3x + 4y + 2z = 85000", "4x + 3y + 2z = 85000", "2x + 3y + 4z = 85000"],
-    answer: 0, cat: "Modeling",
-    fb_true: "✅ Betul — Susunan koefisien harus sesuai urutan variabel.",
-    fb_false: "❌ Salah — Pastikan urutan variabel konsisten dengan soal."
-  },
-  {
-    id: 5, type: "mcq",
-    q: "SPLTV digunakan untuk menyelesaikan masalah dengan berapa persamaan dan berapa variabel?",
-    options: ["2 persamaan, 2 variabel", "3 persamaan, 3 variabel", "3 persamaan, 2 variabel"],
-    answer: 1, cat: "Konsep",
-    fb_true: "✅ Tepat — SPLTV memiliki tiga persamaan dan tiga variabel.",
-    fb_false: "❌ Salah — Kata 'tiga variabel' menandakan ada tiga persamaan juga."
-  },
-  {
-    id: 6, type: "mcq",
-    q: "Jika diketahui x + y + z = 6; x + 2y + 3z = 14; 2x + 3y + 4z = 20. Nilai x adalah...",
-    options: ["1", "2", "3", "4"],
-    answer: 1, cat: "Perhitungan",
-    fb_true: "✅ Benar — Nilai x = 2 setelah disubstitusikan ke sistem.",
-    fb_false: "❌ Salah — Coba lakukan eliminasi variabel z terlebih dahulu."
-  },
-  {
-    id: 7, type: "short",
-    q: "Dari SPLTV: x + y + z = 12; 2x - y + z = 6; 3x + 2y - z = 8. Tentukan nilai (x, y, z) dipisah koma.",
-    answer: "2,4,6", cat: "Perhitungan",
-    fb_true: "✅ Tepat — (x, y, z) = (2, 4, 6).",
-    fb_false: "❌ Salah — Periksa kembali dengan metode eliminasi bertahap."
-  },
-  {
-    id: 8, type: "mcq",
-    q: "SPLTV berikut mewakili harga barang: 2x + y + z = 10; x + y + 2z = 11; 3x + 2y + 3z = 21. Nilai x adalah...",
-    options: ["2", "3", "4", "5"],
-    answer: 1, cat: "Perhitungan",
-    fb_true: "✅ Benar — Dengan eliminasi, nilai x = 3.",
-    fb_false: "❌ Salah — Coba kurangi persamaan pertama dan kedua untuk eliminasi y."
-  },
-  {
-    id: 9, type: "mcq",
-    q: "Dalam suatu SPLTV, jika semua koefisien dan hasil dikalikan dengan 2, maka solusi...",
-    options: [
-      "Berubah menjadi dua kali lipat",
-      "Tetap sama",
-      "Menjadi setengahnya"
-    ],
-    answer: 1, cat: "Konsep",
-    fb_true: "✅ Tepat — Mengalikan semua bagian tidak mengubah himpunan penyelesaian.",
-    fb_false: "❌ Salah — Koefisien yang dikali sama tidak mengubah solusi."
-  },
-  {
-    id: 10, type: "mcq",
-    q: "Pilih metode paling efisien untuk menyelesaikan SPLTV dengan koefisien x pada persamaan 1,2,3 berturut-turut 3,1,4...",
-    options: ["Substitusi", "Eliminasi", "Campuran", "Grafik"],
-    answer: 1, cat: "Strategi",
-    fb_true: "✅ Benar — Eliminasi efektif saat koefisien x mudah disejajarkan.",
-    fb_false: "❌ Coba pikir kembali, metode eliminasi akan memudahkan penyamaan koefisien."
-  },
-  {
-    id: 11, type: "short",
-    q: "Diketahui SPLTV: x + y + z = 6; 2x + 3y + z = 12; 3x + y + 2z = 11. Tentukan nilai z.",
-    answer: "1", cat: "Perhitungan",
-    fb_true: "✅ Bagus — Nilai z = 1 setelah substitusi nilai x dan y.",
-    fb_false: "❌ Salah — Coba lakukan eliminasi antara persamaan 1 dan 2."
-  },
-  {
-    id: 12, type: "mcq",
-    q: "Jika SPLTV tidak memiliki solusi, maka sistem disebut...",
-    options: ["Konsisten", "Inkonisten", "Homogen", "Sejajar"],
-    answer: 1, cat: "Konsep",
-    fb_true: "✅ Benar — SPLTV tanpa solusi disebut sistem inkonsisten.",
-    fb_false: "❌ Salah — Ingat, inkonsisten berarti garis atau bidang tidak berpotongan."
-  },
-  {
-    id: 13, type: "mcq",
-    q: "Untuk memodelkan tiga jenis tiket bioskop dengan harga berbeda, digunakan SPLTV agar...",
-    options: [
-      "Menentukan harga setiap jenis tiket",
-      "Menentukan total pengunjung",
-      "Menentukan jam tayang film"
-    ],
-    answer: 0, cat: "Modeling",
-    fb_true: "✅ Benar — SPLTV digunakan untuk mencari nilai tiap variabel harga.",
-    fb_false: "❌ Salah — Fokus SPLTV adalah mencari nilai dari tiga variabel."
-  },
-  {
-    id: 14, type: "mcq",
-    q: "Jika solusi SPLTV adalah x=2, y=3, z=4, maka nilai 2x + y - z adalah...",
-    options: ["3", "4", "7", "6"],
-    answer: 2, cat: "Perhitungan",
-    fb_true: "✅ Tepat — Substitusi ke 2x + y - z menghasilkan 7.",
-    fb_false: "❌ Salah — Coba substitusikan nilai-nilai ke dalam persamaan dengan teliti."
-  },
-  {
-    id: 15, type: "mcq",
-    q: "Sebagai guru, pendekatan pembelajaran yang baik untuk mengenalkan SPLTV adalah...",
-    options: [
-      "Memberi rumus langsung",
-      "Melalui masalah kontekstual dan diskusi kelompok",
-      "Hanya latihan hitungan",
-      "Menyalin contoh dari papan tulis"
-    ],
-    answer: 1, cat: "Pedagogi",
-    fb_true: "✅ Sangat baik — Pendekatan kontekstual membantu siswa memahami konsep lebih dalam.",
-    fb_false: "❌ Coba gunakan pembelajaran berbasis masalah agar siswa aktif berpikir."
-  }
-];
+    <!-- 🟨 BAGIAN SOAL -->
+    <section id="quiz" class="hidden"></section>
 
-// ==========================
-// 2️⃣ FUNGSI UTAMA
-// ==========================
-function startTest() {
-  const name = document.getElementById("studentName").value.trim();
-  const cls = document.getElementById("studentClass").value.trim();
-  if (!name || !cls) return alert("Isi nama dan kelas terlebih dahulu!");
-  document.getElementById("intro").classList.add("hidden");
-  showQuestions();
-}
+    <!-- 🟧 HASIL DAN RINGKASAN -->
+    <section id="results" class="hidden">
+      <h2>Hasil Evaluasi</h2>
+      <div id="summary"></div>
+      <br>
+      <button class="btn" onclick="printSummary()">Cetak Hasil</button>
+      <button class="btn" onclick="restartTest()">Mulai Ulang</button>
+    </section>
+  </main>
 
-function showQuestions() {
-  const quizDiv = document.getElementById("quizSection");
-  quizDiv.innerHTML = "";
-  QUESTIONS.forEach((q, i) => {
-    let html = `<div class='question'><p><b>${i + 1}. ${q.q}</b></p>`;
-    if (q.type === "mcq") {
-      q.options.forEach((opt, idx) => {
-        html += `<label><input type='radio' name='q${q.id}' value='${idx}'> ${opt}</label><br>`;
+  <script>
+    // ==============================
+    // 1️⃣ DAFTAR SOAL
+    // ==============================
+    const QUESTIONS = [
+      {
+        id: 1,
+        type: 'mcq',
+        q: 'Rani membeli 5 kg apel, 2 kg jeruk, dan 3 kg anggur dengan total Rp125.000,00. Bentuk persamaan matematikanya adalah...',
+        options: ['5x + 2y + 3z = 125000', '2x + 5y + 3z = 125000', '3x + 5y + 2z = 125000'],
+        answer: 0,
+        cat: 'Modeling',
+        fb_true: '✅ Benar — Kamu sudah mampu mengubah kalimat menjadi model matematika SPLTV dengan tepat.',
+        fb_false: '❌ Salah — Perhatikan bahwa total harga harus berada di sisi kanan tanda sama dengan (=).'
+      },
+      {
+        id: 5,
+        type: 'mcq',
+        q: 'Diketahui SPLTV: x + y + z = -6; x + y - 2z = 3; x - 2y + z = 9. Nilai z adalah...',
+        options: ['-3', '2', '5'],
+        answer: 0,
+        cat: 'Perhitungan',
+        fb_true: '✅ Hebat! Kamu telah berhasil menyelesaikan eliminasi dengan benar.',
+        fb_false: '❌ Coba periksa kembali langkah eliminasimu.'
+      },
+      {
+        id: 7,
+        type: 'short',
+        q: 'Dari SPLTV: x + y + z = 12; 2x - y + z = 6; 3x + 2y - z = 8. Tentukan nilai (x, y, z) sebagai tiga bilangan yang dipisah koma.',
+        answer: '2,4,6',
+        cat: 'Perhitungan',
+        fb_true: '✅ Tepat! Nilai (x, y, z) = (2,4,6).',
+        fb_false: '❌ Perhatikan langkah substitusi/eliminasi agar hasilnya konsisten.'
+      },
+      {
+        id: 10,
+        type: 'mcq',
+        q: 'Pilih metode yang paling efisien untuk menyelesaikan SPLTV yang koefisien x pada persamaan 1,2,3 adalah 3,1,4...',
+        options: ['Eliminasi', 'Substitusi', 'Gabungan eliminasi-substitusi'],
+        answer: 0,
+        cat: 'Strategi',
+        fb_true: '✅ Benar — Metode eliminasi efisien untuk bentuk seperti ini.',
+        fb_false: '❌ Salah — Lihat kembali pola koefisien variabelnya.'
+      }
+      // Tambahkan hingga 15 soal sesuai kebutuhan
+    ];
+
+    // ==============================
+    // 2️⃣ FUNGSI UTAMA
+    // ==============================
+    function startTest() {
+      const name = document.getElementById('studentName').value.trim();
+      const cls = document.getElementById('studentClass').value.trim();
+      if (!name || !cls) return alert('Isi nama dan kelas terlebih dahulu!');
+      document.getElementById('identity').classList.add('hidden');
+      document.getElementById('intro').classList.add('hidden');
+      const quizDiv = document.getElementById('quiz');
+      quizDiv.classList.remove('hidden');
+      quizDiv.innerHTML = '';
+      QUESTIONS.forEach((q, i) => {
+        let html = `<div class='question'><h3>${i+1}. ${q.q}</h3>`;
+        if (q.type === 'mcq') {
+          q.options.forEach((opt, j) => {
+            html += `<label><input type='radio' name='q${i}' value='${j}'> ${opt}</label><br>`;
+          });
+        } else {
+          html += `<input type='text' id='q${i}' placeholder='Ketik jawabanmu di sini'>`;
+        }
+        html += '</div>';
+        quizDiv.innerHTML += html;
       });
-    } else if (q.type === "short") {
-      html += `<input type='text' id='q${q.id}' placeholder='Ketik jawaban...'>`;
-    }
-    html += `</div>`;
-    quizDiv.innerHTML += html;
-  });
-  quizDiv.innerHTML += `<br><button onclick='finishAndShowResults()'>Selesai & Lihat Hasil</button>`;
-  quizDiv.classList.remove("hidden");
-}
-
-function finishAndShowResults() {
-  let score = 0;
-  let total = QUESTIONS.length;
-  let resultHTML = "";
-  let catScores = {};
-
-  QUESTIONS.forEach(q => {
-    let correct = false;
-    let userAns;
-
-    if (q.type === "mcq") {
-      const sel = document.querySelector(`input[name='q${q.id}']:checked`);
-      userAns = sel ? parseInt(sel.value) : null;
-      correct = (userAns === q.answer);
-    } else {
-      const inp = document.getElementById(`q${q.id}`);
-      userAns = inp ? inp.value.trim().toLowerCase() : "";
-      correct = (userAns === q.answer.toLowerCase());
+      quizDiv.innerHTML += `<button class='btn' onclick='finishAndShowResults()'>Selesai & Lihat Hasil</button>`;
     }
 
-    if (correct) score++;
-    if (!catScores[q.cat]) catScores[q.cat] = { correct: 0, total: 0 };
-    catScores[q.cat].total++;
-    if (correct) catScores[q.cat].correct++;
+    function finishAndShowResults() {
+      const quizDiv = document.getElementById('quiz');
+      quizDiv.classList.add('hidden');
+      const resultsDiv = document.getElementById('results');
+      const summaryDiv = document.getElementById('summary');
+      let score = 0;
+      let total = QUESTIONS.length;
+      let catScores = {};
 
-    resultHTML += `<p><b>${q.id}. ${q.q}</b><br>${correct ? q.fb_true : q.fb_false}</p>`;
-  });
+      QUESTIONS.forEach((q, i) => {
+        let userAnswer;
+        if (q.type === 'mcq') {
+          const checked = document.querySelector(`input[name='q${i}']:checked`);
+          userAnswer = checked ? parseInt(checked.value) : null;
+        } else {
+          userAnswer = document.getElementById(`q${i}`).value.trim();
+        }
 
-  // Rekap hasil
-  let summaryHTML = `<p><b>Skor Akhir:</b> ${score} / ${total}</p>`;
-  summaryHTML += "<h3>Analisis Kategori:</h3><ul>";
-  for (let cat in catScores) {
-    const cs = catScores[cat];
-    const rate = Math.round((cs.correct / cs.total) * 100);
-    summaryHTML += `<li><b>${cat}:</b> ${rate}% benar</li>`;
-  }
-  summaryHTML += "</ul>";
-  summaryHTML += "<p><b>Rekomendasi:</b><br>Perkuat kategori dengan skor di bawah 70% melalui latihan tambahan atau pembahasan ulang.</p>";
+        let correct = (q.type === 'mcq' ? userAnswer === q.answer : userAnswer === q.answer);
+        if (correct) score++;
 
-  document.getElementById("summary").innerHTML = summaryHTML + "<hr>" + resultHTML;
-  document.getElementById("quizSection").classList.add("hidden");
-  document.getElementById("resultSection").classList.remove("hidden");
-}
+        if (!catScores[q.cat]) catScores[q.cat] = { correct: 0, total: 0 };
+        catScores[q.cat].total++;
+        if (correct) catScores[q.cat].correct++;
+      });
 
-function printSummary() { window.print(); }
-function restartTest() { window.location.reload(); }
-</script>
+      let summaryHTML = `<p><strong>Skor Akhir:</strong> ${score} / ${total}</p>`;
+      summaryHTML += `<h3>Analisis per Kategori:</h3><ul>`;
+      for (let cat in catScores) {
+        const { correct, total } = catScores[cat];
+        summaryHTML += `<li>${cat}: ${correct}/${total}</li>`;
+      }
+      summaryHTML += '</ul>';
+      summaryHTML += `<p><em>Rekomendasi:</em> Pelajari kembali kategori dengan skor terendah untuk memperkuat pemahamanmu.</p>`;
+      summaryDiv.innerHTML = summaryHTML;
+      resultsDiv.classList.remove('hidden');
+    }
+
+    function printSummary() {
+      window.print();
+    }
+
+    function restartTest() {
+      location.reload();
+    }
+  </script>
 </body>
 </html>
