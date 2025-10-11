@@ -113,52 +113,144 @@
     </section>
   </main>
 
-  <script>
-    // ==============================
-    // 1️⃣ DAFTAR SOAL
-    // ==============================
-    const QUESTIONS = [
-      {
-        id: 1,
-        type: 'mcq',
-        q: 'Rani membeli 5 kg apel, 2 kg jeruk, dan 3 kg anggur dengan total Rp125.000,00. Bentuk persamaan matematikanya adalah...',
-        options: ['5x + 2y + 3z = 125000', '2x + 5y + 3z = 125000', '3x + 5y + 2z = 125000'],
-        answer: 0,
-        cat: 'Modeling',
-        fb_true: '✅ Benar — Kamu sudah mampu mengubah kalimat menjadi model matematika SPLTV dengan tepat.',
-        fb_false: '❌ Salah — Perhatikan bahwa total harga harus berada di sisi kanan tanda sama dengan (=).'
-      },
-      {
-        id: 5,
-        type: 'mcq',
-        q: 'Diketahui SPLTV: x + y + z = -6; x + y - 2z = 3; x - 2y + z = 9. Nilai z adalah...',
-        options: ['-3', '2', '5'],
-        answer: 0,
-        cat: 'Perhitungan',
-        fb_true: '✅ Hebat! Kamu telah berhasil menyelesaikan eliminasi dengan benar.',
-        fb_false: '❌ Coba periksa kembali langkah eliminasimu.'
-      },
-      {
-        id: 7,
-        type: 'short',
-        q: 'Dari SPLTV: x + y + z = 12; 2x - y + z = 6; 3x + 2y - z = 8. Tentukan nilai (x, y, z) sebagai tiga bilangan yang dipisah koma.',
-        answer: '2,4,6',
-        cat: 'Perhitungan',
-        fb_true: '✅ Tepat! Nilai (x, y, z) = (2,4,6).',
-        fb_false: '❌ Perhatikan langkah substitusi/eliminasi agar hasilnya konsisten.'
-      },
-      {
-        id: 10,
-        type: 'mcq',
-        q: 'Pilih metode yang paling efisien untuk menyelesaikan SPLTV yang koefisien x pada persamaan 1,2,3 adalah 3,1,4...',
-        options: ['Eliminasi', 'Substitusi', 'Gabungan eliminasi-substitusi'],
-        answer: 0,
-        cat: 'Strategi',
-        fb_true: '✅ Benar — Metode eliminasi efisien untuk bentuk seperti ini.',
-        fb_false: '❌ Salah — Lihat kembali pola koefisien variabelnya.'
-      }
-      // Tambahkan hingga 15 soal sesuai kebutuhan
-    ];
+<script>
+// ==========================
+// 1️⃣ DAFTAR 15 SOAL SPLTV
+// ==========================
+const QUESTIONS = [
+  // --- MODELING ---
+  {
+    id: 1, type: "mcq",
+    q: "Rani membeli 5 kg apel, 2 kg jeruk, dan 3 kg anggur dengan total Rp125.000,00. Bentuk persamaan matematikanya adalah...",
+    options: ["5x + 2y + 3z = 125000", "2x + 5y + 3z = 125000", "5x + 3y + 2z = 125000"],
+    answer: 0, cat: "Modeling",
+    fb_true: "✅ Benar — Kamu sudah mampu mengubah kalimat menjadi model matematika SPLTV dengan tepat.",
+    fb_false: "❌ Salah — Perhatikan bahwa total harga harus berada di sisi kanan tanda sama dengan (=)."
+  },
+  {
+    id: 2, type: "mcq",
+    q: "Bentuk umum SPLTV yang benar adalah...",
+    options: ["ax + by + cz = d", "ax + by = c", "ax = by + cz"],
+    answer: 0, cat: "Konsep",
+    fb_true: "✅ Tepat — SPLTV memiliki tiga variabel dalam satu sistem linear.",
+    fb_false: "❌ Salah — Ingat bahwa SPLTV selalu memiliki tiga variabel dan tanda sama dengan (=)."
+  },
+  {
+    id: 3, type: "mcq",
+    q: "Dalam konteks penjualan, jika 2 roti, 3 donat, dan 4 kue seharga Rp56.000, maka bentuk persamaannya adalah...",
+    options: ["2x + 3y + 4z = 56000", "3x + 2y + 4z = 56000", "4x + 3y + 2z = 56000"],
+    answer: 0, cat: "Modeling",
+    fb_true: "✅ Benar — Kamu dapat mengubah masalah kontekstual menjadi bentuk persamaan.",
+    fb_false: "❌ Salah — Urutan koefisien harus sesuai dengan urutan barang yang disebut."
+  },
+  {
+    id: 4, type: "mcq",
+    q: "Bentuk SPLTV yang dapat mewakili harga apel (x), jeruk (y), dan mangga (z) jika 3 apel, 4 jeruk, dan 2 mangga seharga Rp85.000 adalah...",
+    options: ["3x + 4y + 2z = 85000", "4x + 3y + 2z = 85000", "2x + 3y + 4z = 85000"],
+    answer: 0, cat: "Modeling",
+    fb_true: "✅ Betul — Susunan koefisien harus sesuai urutan variabel.",
+    fb_false: "❌ Salah — Pastikan urutan variabel konsisten dengan soal."
+  },
+  {
+    id: 5, type: "mcq",
+    q: "SPLTV digunakan untuk menyelesaikan masalah dengan berapa persamaan dan berapa variabel?",
+    options: ["2 persamaan, 2 variabel", "3 persamaan, 3 variabel", "3 persamaan, 2 variabel"],
+    answer: 1, cat: "Konsep",
+    fb_true: "✅ Tepat — SPLTV memiliki tiga persamaan dan tiga variabel.",
+    fb_false: "❌ Salah — Kata 'tiga variabel' menandakan ada tiga persamaan juga."
+  },
+  {
+    id: 6, type: "mcq",
+    q: "Jika diketahui x + y + z = 6; x + 2y + 3z = 14; 2x + 3y + 4z = 20. Nilai x adalah...",
+    options: ["1", "2", "3", "4"],
+    answer: 1, cat: "Perhitungan",
+    fb_true: "✅ Benar — Nilai x = 2 setelah disubstitusikan ke sistem.",
+    fb_false: "❌ Salah — Coba lakukan eliminasi variabel z terlebih dahulu."
+  },
+  {
+    id: 7, type: "short",
+    q: "Dari SPLTV: x + y + z = 12; 2x - y + z = 6; 3x + 2y - z = 8. Tentukan nilai (x, y, z) dipisah koma.",
+    answer: "2,4,6", cat: "Perhitungan",
+    fb_true: "✅ Tepat — (x, y, z) = (2, 4, 6).",
+    fb_false: "❌ Salah — Periksa kembali dengan metode eliminasi bertahap."
+  },
+  {
+    id: 8, type: "mcq",
+    q: "SPLTV berikut mewakili harga barang: 2x + y + z = 10; x + y + 2z = 11; 3x + 2y + 3z = 21. Nilai x adalah...",
+    options: ["2", "3", "4", "5"],
+    answer: 1, cat: "Perhitungan",
+    fb_true: "✅ Benar — Dengan eliminasi, nilai x = 3.",
+    fb_false: "❌ Salah — Coba kurangi persamaan pertama dan kedua untuk eliminasi y."
+  },
+  {
+    id: 9, type: "mcq",
+    q: "Dalam suatu SPLTV, jika semua koefisien dan hasil dikalikan dengan 2, maka solusi...",
+    options: [
+      "Berubah menjadi dua kali lipat",
+      "Tetap sama",
+      "Menjadi setengahnya"
+    ],
+    answer: 1, cat: "Konsep",
+    fb_true: "✅ Tepat — Mengalikan semua bagian tidak mengubah himpunan penyelesaian.",
+    fb_false: "❌ Salah — Koefisien yang dikali sama tidak mengubah solusi."
+  },
+  {
+    id: 10, type: "mcq",
+    q: "Pilih metode paling efisien untuk menyelesaikan SPLTV dengan koefisien x pada persamaan 1,2,3 berturut-turut 3,1,4...",
+    options: ["Substitusi", "Eliminasi", "Campuran", "Grafik"],
+    answer: 1, cat: "Strategi",
+    fb_true: "✅ Benar — Eliminasi efektif saat koefisien x mudah disejajarkan.",
+    fb_false: "❌ Coba pikir kembali, metode eliminasi akan memudahkan penyamaan koefisien."
+  },
+  {
+    id: 11, type: "short",
+    q: "Diketahui SPLTV: x + y + z = 6; 2x + 3y + z = 12; 3x + y + 2z = 11. Tentukan nilai z.",
+    answer: "1", cat: "Perhitungan",
+    fb_true: "✅ Bagus — Nilai z = 1 setelah substitusi nilai x dan y.",
+    fb_false: "❌ Salah — Coba lakukan eliminasi antara persamaan 1 dan 2."
+  },
+  {
+    id: 12, type: "mcq",
+    q: "Jika SPLTV tidak memiliki solusi, maka sistem disebut...",
+    options: ["Konsisten", "Inkonisten", "Homogen", "Sejajar"],
+    answer: 1, cat: "Konsep",
+    fb_true: "✅ Benar — SPLTV tanpa solusi disebut sistem inkonsisten.",
+    fb_false: "❌ Salah — Ingat, inkonsisten berarti garis atau bidang tidak berpotongan."
+  },
+  {
+    id: 13, type: "mcq",
+    q: "Untuk memodelkan tiga jenis tiket bioskop dengan harga berbeda, digunakan SPLTV agar...",
+    options: [
+      "Menentukan harga setiap jenis tiket",
+      "Menentukan total pengunjung",
+      "Menentukan jam tayang film"
+    ],
+    answer: 0, cat: "Modeling",
+    fb_true: "✅ Benar — SPLTV digunakan untuk mencari nilai tiap variabel harga.",
+    fb_false: "❌ Salah — Fokus SPLTV adalah mencari nilai dari tiga variabel."
+  },
+  {
+    id: 14, type: "mcq",
+    q: "Jika solusi SPLTV adalah x=2, y=3, z=4, maka nilai 2x + y - z adalah...",
+    options: ["3", "4", "7", "6"],
+    answer: 2, cat: "Perhitungan",
+    fb_true: "✅ Tepat — Substitusi ke 2x + y - z menghasilkan 7.",
+    fb_false: "❌ Salah — Coba substitusikan nilai-nilai ke dalam persamaan dengan teliti."
+  },
+  {
+    id: 15, type: "mcq",
+    q: "Sebagai guru, pendekatan pembelajaran yang baik untuk mengenalkan SPLTV adalah...",
+    options: [
+      "Memberi rumus langsung",
+      "Melalui masalah kontekstual dan diskusi kelompok",
+      "Hanya latihan hitungan",
+      "Menyalin contoh dari papan tulis"
+    ],
+    answer: 1, cat: "Pedagogi",
+    fb_true: "✅ Sangat baik — Pendekatan kontekstual membantu siswa memahami konsep lebih dalam.",
+    fb_false: "❌ Coba gunakan pembelajaran berbasis masalah agar siswa aktif berpikir."
+  }
+];
 
     // ==============================
     // 2️⃣ FUNGSI UTAMA
