@@ -94,15 +94,12 @@ button:hover { background: #4b86b4; }
 
 <script>
 // ==========================
-// VARIABEL WAKTU GLOBAL
+// TIMER & DATA SOAL
 // ==========================
 let startTime, endTime;
 
-// ==========================
-// CONTOH SEBAGIAN SOAL
-// (disingkat untuk fokus pada logika dan analisis)
-// ==========================
 const QUESTIONS = [
+  // ===== MODELING =====
   {
     id: 1, type: "mcq",
     q: "Rani membeli 5 kg apel, 2 kg jeruk, dan 3 kg anggur dengan total Rp125.000,00. Bentuk persamaan matematikanya adalah...",
@@ -113,13 +110,124 @@ const QUESTIONS = [
   },
   {
     id: 2, type: "mcq",
-    q: "SPLTV memiliki berapa variabel?",
-    options: ["Satu", "Dua", "Tiga", "Empat"],
+    q: "Dalam konteks pembelian buah: 2 apel, 3 jeruk, dan 4 mangga seharga Rp56.000. Persamaan yang sesuai adalah...",
+    options: ["2x + 3y + 4z = 56000", "3x + 2y + 4z = 56000", "4x + 3y + 2z = 56000"],
+    answer: 0, cat: "Modeling",
+    fb_true: "✅ Tepat — kamu bisa mengonversi informasi dari teks menjadi model matematika.",
+    fb_false: "❌ Salah — urutan koefisien harus sesuai urutan benda yang disebut."
+  },
+  {
+    id: 3, type: "mcq",
+    q: "Harga 3 pensil, 2 buku, dan 1 penggaris adalah Rp14.000. Model SPLTV-nya adalah...",
+    options: ["3x + 2y + z = 14000", "2x + 3y + z = 14000", "x + 3y + 2z = 14000"],
+    answer: 0, cat: "Modeling",
+    fb_true: "✅ Bagus — urutan variabel sudah sesuai dengan urutan benda.",
+    fb_false: "❌ Hati-hati dalam menentukan koefisien tiap barang."
+  },
+  {
+    id: 4, type: "mcq",
+    q: "Jika 3 kaos, 4 celana, dan 2 topi berharga Rp85.000, maka bentuk SPLTV-nya adalah...",
+    options: ["3x + 4y + 2z = 85000", "4x + 3y + 2z = 85000", "2x + 3y + 4z = 85000"],
+    answer: 0, cat: "Modeling",
+    fb_true: "✅ Tepat — koefisien sudah sesuai dengan barang yang disebutkan.",
+    fb_false: "❌ Coba baca ulang urutan informasi pada soal."
+  },
+  {
+    id: 5, type: "mcq",
+    q: "SPLTV cocok digunakan untuk masalah yang melibatkan...",
+    options: ["Satu variabel", "Dua variabel", "Tiga variabel", "Empat variabel"],
     answer: 2, cat: "Konsep",
-    fb_true: "✅ Benar! SPLTV terdiri dari tiga variabel, misalnya x, y, dan z.",
-    fb_false: "❌ Coba ingat kembali, kata 'tiga variabel' menunjukkan ada tiga besaran yang dicari."
+    fb_true: "✅ Benar! SPLTV berarti tiga persamaan dengan tiga variabel.",
+    fb_false: "❌ Ingat, SPLTV memuat tiga variabel seperti x, y, dan z."
+  },
+  {
+    id: 6, type: "mcq",
+    q: "Bentuk umum SPLTV adalah...",
+    options: ["ax + by + cz = d", "ax + by = c", "ax = by + cz"],
+    answer: 0, cat: "Konsep",
+    fb_true: "✅ Betul — SPLTV memiliki tiga variabel dan konstanta di sisi kanan.",
+    fb_false: "❌ Salah — perhatikan bahwa SPLTV punya tiga koefisien untuk tiga variabel."
+  },
+
+  // ===== PERHITUNGAN =====
+  {
+    id: 7, type: "short",
+    q: "Dari SPLTV: x + y + z = 12; 2x - y + z = 6; 3x + 2y - z = 8. Tentukan nilai (x, y, z) dipisah koma.",
+    answer: "2,4,6", cat: "Perhitungan",
+    fb_true: "✅ Tepat — hasilnya (x, y, z) = (2, 4, 6).",
+    fb_false: "❌ Salah — coba gunakan metode eliminasi bertahap."
+  },
+  {
+    id: 8, type: "mcq",
+    q: "Jika diketahui x + y + z = 6; x + 2y + 3z = 14; 2x + 3y + 4z = 20. Nilai x adalah...",
+    options: ["1", "2", "3", "4"],
+    answer: 1, cat: "Perhitungan",
+    fb_true: "✅ Benar — setelah eliminasi, nilai x = 2.",
+    fb_false: "❌ Salah — coba eliminasi z terlebih dahulu."
+  },
+  {
+    id: 9, type: "mcq",
+    q: "SPLTV berikut mewakili harga barang: 2x + y + z = 10; x + y + 2z = 11; 3x + 2y + 3z = 21. Nilai x adalah...",
+    options: ["2", "3", "4", "5"],
+    answer: 1, cat: "Perhitungan",
+    fb_true: "✅ Tepat — dengan eliminasi, nilai x = 3.",
+    fb_false: "❌ Salah — coba kurangi persamaan pertama dan kedua."
+  },
+  {
+    id: 10, type: "short",
+    q: "Diketahui SPLTV: x + y + z = 6; 2x + 3y + z = 12; 3x + y + 2z = 11. Tentukan nilai z.",
+    answer: "1", cat: "Perhitungan",
+    fb_true: "✅ Benar — nilai z = 1.",
+    fb_false: "❌ Salah — coba eliminasi antara persamaan pertama dan kedua."
+  },
+  {
+    id: 11, type: "mcq",
+    q: "Jika solusi SPLTV adalah x=2, y=3, z=4, maka nilai 2x + y - z adalah...",
+    options: ["3", "4", "7", "6"],
+    answer: 2, cat: "Perhitungan",
+    fb_true: "✅ Tepat — substitusi nilai menghasilkan 7.",
+    fb_false: "❌ Salah — coba substitusi dengan teliti."
+  },
+
+  // ===== STRATEGI =====
+  {
+    id: 12, type: "mcq",
+    q: "Pilih metode paling efisien untuk menyelesaikan SPLTV jika koefisien x pada tiga persamaan adalah 3, 1, dan 4.",
+    options: ["Substitusi", "Eliminasi", "Campuran", "Grafik"],
+    answer: 1, cat: "Strategi",
+    fb_true: "✅ Betul — eliminasi efektif saat koefisien mudah disejajarkan.",
+    fb_false: "❌ Coba pikir kembali, metode eliminasi paling cepat di sini."
+  },
+
+  // ===== MODELING LANJUT =====
+  {
+    id: 13, type: "mcq",
+    q: "Untuk memodelkan harga tiga jenis tiket bioskop berbeda, SPLTV digunakan agar...",
+    options: ["Menentukan harga tiap jenis tiket", "Menentukan total pengunjung", "Menentukan jam tayang film"],
+    answer: 0, cat: "Modeling",
+    fb_true: "✅ Benar — SPLTV dapat digunakan untuk mencari nilai tiap harga tiket.",
+    fb_false: "❌ Salah — fokus SPLTV adalah mencari nilai variabel, bukan jumlah penonton."
+  },
+
+  // ===== PERHITUNGAN LANJUT =====
+  {
+    id: 14, type: "mcq",
+    q: "Dari SPLTV: 2x + 3y + z = 14; x + 2y + 3z = 16; 3x + y + 2z = 13. Nilai y adalah...",
+    options: ["2", "3", "4", "5"],
+    answer: 2, cat: "Perhitungan",
+    fb_true: "✅ Bagus — setelah eliminasi, nilai y = 4.",
+    fb_false: "❌ Salah — lakukan pengurangan antar persamaan."
+  },
+
+  // ===== PEDAGOGI =====
+  {
+    id: 15, type: "mcq",
+    q: "Sebagai guru, pendekatan yang baik untuk mengenalkan SPLTV kepada siswa adalah...",
+    options: ["Memberi rumus langsung", "Melalui masalah kontekstual dan diskusi kelompok", "Hanya latihan hitungan", "Menyalin contoh dari papan tulis"],
+    answer: 1, cat: "Pedagogi",
+    fb_true: "✅ Sangat baik — pembelajaran kontekstual membantu siswa memahami makna SPLTV.",
+    fb_false: "❌ Coba gunakan pendekatan yang mengaitkan konsep dengan kehidupan sehari-hari."
   }
-  // (dan seterusnya... isi semua 15 soal seperti versi sebelumnya)
 ];
 
 // ==========================
@@ -129,9 +237,7 @@ function startTest() {
   const name = document.getElementById("studentName").value.trim();
   const cls = document.getElementById("studentClass").value.trim();
   if (!name || !cls) return alert("Isi nama dan kelas terlebih dahulu!");
-  
-  startTime = new Date(); // mulai waktu
-  
+  startTime = new Date();
   document.getElementById("intro").classList.add("hidden");
   showQuestions();
 }
@@ -145,7 +251,7 @@ function showQuestions() {
       q.options.forEach((opt, idx) => {
         html += `<label><input type='radio' name='q${q.id}' value='${idx}'> ${opt}</label><br>`;
       });
-    } else if (q.type === "short") {
+    } else {
       html += `<input type='text' id='q${q.id}' placeholder='Ketik jawaban...'>`;
     }
     html += `</div>`;
@@ -156,15 +262,15 @@ function showQuestions() {
 }
 
 function finishAndShowResults() {
-  endTime = new Date(); // akhiri waktu
+  endTime = new Date();
   const duration = Math.floor((endTime - startTime) / 1000);
   const minutes = Math.floor(duration / 60);
   const seconds = duration % 60;
 
   let score = 0;
   let total = QUESTIONS.length;
-  let resultHTML = "";
   let catScores = {};
+  let resultHTML = "";
 
   QUESTIONS.forEach(q => {
     let correct = false;
@@ -188,49 +294,28 @@ function finishAndShowResults() {
     resultHTML += `<p><b>${q.id}. ${q.q}</b><br>${correct ? q.fb_true : q.fb_false}</p>`;
   });
 
-  // Analisis naratif
+  // Analisis hasil sederhana & rekomendasi
   let analysis = "<h3>Analisis Hasil:</h3><ul>";
   for (let cat in catScores) {
     const cs = catScores[cat];
     const rate = Math.round((cs.correct / cs.total) * 100);
-    let desc = "";
-    if (rate >= 80) desc = "Sangat baik — kamu sudah memahami bagian ini dengan mantap. Pertahankan!";
-    else if (rate >= 60) desc = "Cukup baik — kamu sudah paham dasarnya, tapi masih bisa lebih lancar dengan latihan tambahan.";
-    else desc = "Perlu perhatian — ayo pelajari ulang bagian ini dan minta bantuan guru bila perlu.";
+    let desc = rate >= 80 ? "Sangat baik — kamu sudah memahami bagian ini dengan mantap."
+      : rate >= 60 ? "Cukup baik — kamu paham dasarnya, tapi masih bisa lebih lancar."
+      : "Perlu perhatian — ayo pelajari ulang bagian ini dan minta bimbingan guru.";
     analysis += `<li><b>${cat}</b>: ${rate}% benar. ${desc}</li>`;
   }
   analysis += "</ul>";
 
-  // Rekomendasi lengkap
-  const rekomendasi = `
+  const rekom = `
   <h3>Rekomendasi Belajar:</h3>
-  <p>📘 <b>Modeling</b> — Latih mengubah soal cerita jadi model matematika, misalnya dari konteks jual beli atau campuran bahan.</p>
-  <p>🔢 <b>Perhitungan</b> — Ulangi latihan metode substitusi dan eliminasi. Tulis langkah-langkah dengan rapi agar tidak salah hitung.</p>
-  <p>💡 <b>Konsep</b> — Pahami arti “sistem persamaan” dan “tiga variabel” melalui contoh nyata sederhana.</p>
-  <p>🎯 <b>Strategi</b> — Coba bandingkan berbagai metode penyelesaian dan pilih yang paling efisien.</p>
-  <p>👩‍🏫 <b>Pedagogi</b> — Bagi calon guru, biasakan menjelaskan SPLTV lewat situasi kontekstual agar lebih mudah dipahami siswa.</p>
-  <p style="color:#1e3a8a; font-weight:500;">
-    Terus semangat! Hasil belajar akan meningkat jika kamu berlatih secara rutin dan percaya diri 🌟
-  </p>`;
+  <p>📘 <b>Modeling</b>: Latih mengubah soal cerita menjadi bentuk persamaan.</p>
+  <p>🔢 <b>Perhitungan</b>: Ulangi latihan substitusi & eliminasi langkah demi langkah.</p>
+  <p>💡 <b>Konsep</b>: Pahami makna tiap variabel dan hubungan antar persamaan.</p>
+  <p>🎯 <b>Strategi</b>: Coba metode eliminasi bila koefisien mudah disejajarkan.</p>
+  <p>👩‍🏫 <b>Pedagogi</b>: Gunakan konteks nyata agar siswa mudah memahami SPLTV.</p>
+  <p style='color:#1e3a8a; font-weight:500;'>Terus semangat! Latihan rutin akan membuatmu semakin percaya diri 🌟</p>`;
 
-  let summaryHTML = `
+  document.getElementById("summary").innerHTML = `
     <p><b>Nama:</b> ${document.getElementById("studentName").value}</p>
     <p><b>Kelas:</b> ${document.getElementById("studentClass").value}</p>
-    <p><b>Skor Akhir:</b> ${score} dari ${total} soal</p>
-    <p><b>Persentase:</b> ${Math.round((score/total)*100)}%</p>
-    <p><b>Waktu Pengerjaan:</b> ${minutes} menit ${seconds} detik</p>
-    ${analysis}
-    ${rekomendasi}
-    <hr>${resultHTML}
-  `;
-
-  document.getElementById("summary").innerHTML = summaryHTML;
-  document.getElementById("quizSection").classList.add("hidden");
-  document.getElementById("resultSection").classList.remove("hidden");
-}
-
-function printSummary() { window.print(); }
-function restartTest() { window.location.reload(); }
-</script>
-</body>
-</html>
+    <p><b>Skor Akhir:</b> ${score} dari ${total} soal (${Math.round((
