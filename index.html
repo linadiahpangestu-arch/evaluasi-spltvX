@@ -59,26 +59,22 @@ button:hover { background: #4b86b4; }
 </head>
 <body>
 <div class="container">
-  <h1>Evaluasi Sistem Persamaan Linear Tiga Variabel (SPLTV) Kelas X
-Disusun oleh: Lina Diah Pangestu</h1>
+  <h1>Evaluasi Sistem Persamaan Linear Tiga Variabel (SPLTV) Kelas X<br>
+  <small>Disusun oleh: Lina Diah Pangestu</small></h1>
 
   <div id="intro">
-    <!-- Petunjuk & Motivasi -->
     <section id="petunjuk">
       <h2>Petunjuk & Motivasi</h2>
       <p>
         Kerjakan <strong>15 soal</strong> berikut (campuran pilihan ganda & isian singkat).<br>
-        Tidak ada pemeriksaan jawaban per soal — selesaikan semua, lalu klik
-        <em><strong>"Selesai & Lihat Hasil"</strong></em>.<br>
-        Jawaban akan dinilai otomatis.
+        Setelah semua soal dikerjakan, klik <em><strong>"Selesai & Lihat Hasil"</strong></em> untuk melihat skor dan analisis otomatis.
       </p>
       <p style="color:#1d4ed8; font-weight:500;">
-        Kerjakan dengan jujur dan percaya diri — kamu pasti bisa!<br>
-        Setiap langkah yang kamu ambil akan membawamu lebih dekat pada pemahaman yang lebih baik 💪✨
+        Kerjakan dengan jujur dan percaya diri — kamu pasti bisa! 💪✨
       </p>
     </section>
 
-    <p>Masukkan data diri terlebih dahulu sebelum mulai:</p>
+    <p>Masukkan data diri terlebih dahulu:</p>
     <label>Nama: <input type="text" id="studentName" required></label><br><br>
     <label>Kelas: <input type="text" id="studentClass" required></label><br><br>
     <button onclick="startTest()">Mulai Evaluasi</button>
@@ -96,153 +92,146 @@ Disusun oleh: Lina Diah Pangestu</h1>
 
 <script>
 // ==========================
-// TIMER & DATA SOAL
+// DATA SOAL (15 Soal SPLTV)
 // ==========================
-let startTime, endTime;
-
 const QUESTIONS = [
-  // ===== MODELING =====
+  // Soal 1–3
   {
     id: 1, type: "mcq",
-    q: "Rani membeli 5 kg apel, 2 kg jeruk, dan 3 kg anggur dengan total Rp125.000,00. Bentuk persamaan matematikanya adalah...",
-    options: ["5x + 2y + 3z = 125000", "2x + 5y + 3z = 125000", "5x + 3y + 2z = 125000"],
-    answer: 0, cat: "Modeling",
-    fb_true: "✅ Kamu sudah bisa mengubah kalimat cerita menjadi bentuk persamaan matematika dengan benar.",
-    fb_false: "❌ Perhatikan lagi hubungan antara jumlah barang dan total harga dalam kalimat soal."
+    q: "Penyelesaian dari sistem persamaan { 3x + 7y + 2z = 8 ; 4x + 2y - 5z = -19 ; 6y - 4z = 14 } adalah ...",
+    options: ["x=5,y=3,z=1","x=4,y=-5,z=1","x=-3,y=4,z=1","x=-5,y=3,z=2","x=-5,y=3,z=1"],
+    answer: 4, cat: "Perhitungan",
+    fb_true: "✅ Tepat — solusi memenuhi ketiga persamaan.",
+    fb_false: "❌ Coba ulang langkah eliminasi dan substitusi dengan cermat."
   },
   {
     id: 2, type: "mcq",
-    q: "Dalam pembelian buah: 2 apel, 3 jeruk, dan 4 mangga seharga Rp56.000. Persamaan yang sesuai adalah...",
-    options: ["2x + 3y + 4z = 56000", "3x + 2y + 4z = 56000", "4x + 3y + 2z = 56000"],
-    answer: 0, cat: "Modeling",
-    fb_true: "✅ Tepat — kamu bisa mengonversi informasi dari teks menjadi model matematika.",
-    fb_false: "❌ Salah — urutan koefisien harus sesuai urutan benda yang disebut."
+    q: "Tentukan penyelesaian dari SPLTV berikut: { 2a+b-2c=19 ; 4a+2b+c=13 ; a+b+2c=3 } (urutkan (a,b,c))",
+    options: ["(-4,17,-5)","(-4,-5,17)","(-5,17,-4)","(-5,-4,17)","(-4,19,-5)"],
+    answer: 0, cat: "Perhitungan",
+    fb_true: "✅ Benar — hasilnya (-4,17,-5).",
+    fb_false: "❌ Periksa langkah eliminasi dan urutan variabel."
   },
   {
     id: 3, type: "mcq",
-    q: "Harga 3 pensil, 2 buku, dan 1 penggaris adalah Rp14.000. Model SPLTV-nya adalah...",
-    options: ["3x + 2y + z = 14000", "2x + 3y + z = 14000", "x + 3y + 2z = 14000"],
-    answer: 0, cat: "Modeling",
-    fb_true: "✅ Bagus — urutan variabel sudah sesuai dengan urutan benda.",
-    fb_false: "❌ Hati-hati dalam menentukan koefisien tiap barang."
+    q: "Jika (x₀,y₀,z₀) memenuhi { 3x−2y−3z=5 ; x+y−2z=3 ; x−y+z=−4 }, maka nilai z₀ adalah ...",
+    options: ["-3","-2","-1","4","5"],
+    answer: 0, cat: "Perhitungan",
+    fb_true: "✅ Tepat — z = -3.",
+    fb_false: "❌ Salah — cermati hasil eliminasi variabel z."
   },
+  // Soal 4–6
   {
     id: 4, type: "mcq",
-    q: "Jika 3 kaos, 4 celana, dan 2 topi berharga Rp85.000, maka bentuk SPLTV-nya adalah...",
-    options: ["3x + 4y + 2z = 85000", "4x + 3y + 2z = 85000", "2x + 3y + 4z = 85000"],
-    answer: 0, cat: "Modeling",
-    fb_true: "✅ Tepat — koefisien sudah sesuai dengan barang yang disebutkan.",
-    fb_false: "❌ Coba baca ulang urutan informasi pada soal."
+    q: "Nilai dari x - y + z dari sistem { x+2y+3z=14 ; 2x−y−3z=−9 ; −x+2y+z=6 } adalah ...",
+    options: ["1","2","5","6","9"],
+    answer: 2, cat: "Perhitungan",
+    fb_true: "✅ Benar — hasilnya 5.",
+    fb_false: "❌ Salah — lakukan eliminasi dan substitusi dengan benar."
   },
   {
     id: 5, type: "mcq",
-    q: "SPLTV cocok digunakan untuk masalah yang melibatkan...",
-    options: ["Satu variabel", "Dua variabel", "Tiga variabel", "Empat variabel"],
-    answer: 2, cat: "Konsep",
-    fb_true: "✅ Benar! SPLTV berarti tiga persamaan dengan tiga variabel.",
-    fb_false: "❌ Ingat, SPLTV memuat tiga variabel seperti x, y, dan z."
+    q: "Harga 2 kg mangga, 2 kg jeruk, dan 1 kg anggur Rp70.000; 1 kg mangga, 2 kg jeruk, dan 2 kg anggur Rp90.000; 2 kg mangga, 2 kg jeruk, dan 3 kg anggur Rp130.000. Harga 1 kg jeruk adalah ...",
+    options: ["Rp5.000","Rp7.500","Rp10.000","Rp12.000","Rp15.000"],
+    answer: 1, cat: "Modeling",
+    fb_true: "✅ Tepat — harga 1 kg jeruk = Rp7.500.",
+    fb_false: "❌ Salah — bentuk persamaan sesuai urutan buah."
   },
   {
     id: 6, type: "mcq",
-    q: "Bentuk umum SPLTV adalah...",
-    options: ["ax + by + cz = d", "ax + by = c", "ax = by + cz"],
-    answer: 0, cat: "Konsep",
-    fb_true: "✅ Betul — SPLTV memiliki tiga variabel dan konstanta di sisi kanan.",
-    fb_false: "❌ Salah — perhatikan bahwa SPLTV punya tiga koefisien untuk tiga variabel."
+    q: "Tiga tahun lalu umur A = 2×umur B. Dua tahun lagi, 4×umur A = umur B + 36. Umur A sekarang adalah ...",
+    options: ["4","6","9","12"],
+    answer: 3, cat: "Modeling",
+    fb_true: "✅ Benar — umur A sekarang 12 tahun.",
+    fb_false: "❌ Salah — gunakan logika umur 'lalu' dan 'mendatang' dengan benar."
   },
-
-  // ===== PERHITUNGAN =====
+  // Soal 7–11
   {
-    id: 7, type: "short",
-    q: "Dari SPLTV: x + y + z = 12; 2x - y + z = 6; 3x + 2y - z = 8. Tentukan nilai (x, y, z) dipisah koma.",
-    answer: "2,4,6", cat: "Perhitungan",
-    fb_true: "✅ Tepat — hasilnya (x, y, z) = (2, 4, 6).",
-    fb_false: "❌ Salah — coba gunakan metode eliminasi bertahap."
+    id: 7, type: "mcq",
+    q: "Toko A membayar Rp5.500.000 untuk 5 sepeda jenis I & 4 jenis II; Toko B Rp3.000.000 untuk 3 jenis I & 2 jenis II. Jika Toko C membeli 6 jenis I & 2 jenis II, maka harus membayar ...",
+    options: ["Rp3.500.000","Rp4.000.000","Rp4.500.000","Rp5.000.000","Rp5.500.000"],
+    answer: 2, cat: "Modeling",
+    fb_true: "✅ Benar — hasilnya Rp4.500.000.",
+    fb_false: "❌ Salah — perhatikan koefisien jumlah sepeda."
   },
   {
     id: 8, type: "mcq",
-    q: "Jika diketahui x + y + z = 6; x + 2y + 3z = 14; 2x + 3y + 4z = 20. Nilai x adalah...",
-    options: ["1", "2", "3", "4"],
-    answer: 1, cat: "Perhitungan",
-    fb_true: "✅ Benar — setelah eliminasi, nilai x = 2.",
-    fb_false: "❌ Salah — coba eliminasi z terlebih dahulu."
+    q: "Irma membeli 2 kg apel & 3 kg jeruk Rp57.000; Ade 3 kg apel & 5 kg jeruk Rp90.000. Jika Surya beli 1 kg apel & 1 kg jeruk dan bayar Rp100.000, uang kembalian Surya adalah ...",
+    options: ["Rp24.000","Rp42.000","Rp67.000","Rp76.000","Rp80.000"],
+    answer: 0, cat: "Perhitungan",
+    fb_true: "✅ Tepat — kembalian Surya Rp24.000.",
+    fb_false: "❌ Salah — selesaikan SPLTV dengan tepat."
   },
   {
     id: 9, type: "mcq",
-    q: "SPLTV berikut mewakili harga barang: 2x + y + z = 10; x + y + 2z = 11; 3x + 2y + 3z = 21. Nilai x adalah...",
-    options: ["2", "3", "4", "5"],
-    answer: 1, cat: "Perhitungan",
-    fb_true: "✅ Tepat — dengan eliminasi, nilai x = 3.",
-    fb_false: "❌ Salah — coba kurangi persamaan pertama dan kedua."
+    q: "Jumlah tiga bilangan = 75. Bilangan pertama = 5 lebih dari jumlah dua lainnya. Bilangan kedua = ¼ dari jumlah dua lainnya. Bilangan pertama adalah ...",
+    options: ["15","20","25","35","45"],
+    answer: 3, cat: "Modeling",
+    fb_true: "✅ Benar — bilangan pertama 35.",
+    fb_false: "❌ Salah — bentuk 3 persamaan sesuai kalimat soal."
   },
   {
-    id: 10, type: "short",
-    q: "Diketahui SPLTV: x + y + z = 6; 2x + 3y + z = 12; 3x + y + 2z = 11. Tentukan nilai z.",
-    answer: "1", cat: "Perhitungan",
-    fb_true: "✅ Benar — nilai z = 1.",
-    fb_false: "❌ Salah — coba eliminasi antara persamaan pertama dan kedua."
+    id: 10, type: "mcq",
+    q: "Harga 2 pisang, 2 apel, dan 1 mangga Rp1.400; 1 pisang, 1 apel, dan 2 mangga Rp1.300; 1 pisang, 3 apel, dan 1 mangga Rp1.400. Harga 1 pisang, 1 apel, 1 mangga adalah ...",
+    options: ["Rp700","Rp800","Rp850","Rp900","Rp950"],
+    answer: 1, cat: "Perhitungan",
+    fb_true: "✅ Tepat — total Rp800.",
+    fb_false: "❌ Salah — ulangi eliminasi secara sistematis."
   },
   {
     id: 11, type: "mcq",
-    q: "Jika solusi SPLTV adalah x=2, y=3, z=4, maka nilai 2x + y - z adalah...",
-    options: ["3", "4", "7", "6"],
-    answer: 2, cat: "Perhitungan",
-    fb_true: "✅ Tepat — substitusi nilai menghasilkan 7.",
-    fb_false: "❌ Salah — coba substitusi dengan teliti."
+    q: "Ali beli 3 buku,1 pena,2 pensil=Rp14.000; Budi 2 buku,3 pena,1 pensil=Rp14.000; Cici 1 buku,2 pena,3 pensil=Rp11.000. Dedi beli 2 buku,1 pena,1 pensil, berapa harga totalnya?",
+    options: ["Rp7.000","Rp8.000","Rp9.000","Rp10.000","Rp12.000"],
+    answer: 0, cat: "Modeling",
+    fb_true: "✅ Benar — Dedi harus membayar Rp7.000.",
+    fb_false: "❌ Salah — pastikan persamaan pembelian ditulis dengan benar."
   },
-
-  // ===== STRATEGI =====
+  // Soal 12–15
   {
     id: 12, type: "mcq",
-    q: "Pilih metode paling efisien untuk menyelesaikan SPLTV jika koefisien x pada tiga persamaan adalah 3, 1, dan 4.",
-    options: ["Substitusi", "Eliminasi", "Campuran", "Grafik"],
-    answer: 1, cat: "Strategi",
-    fb_true: "✅ Betul — eliminasi efektif saat koefisien mudah disejajarkan.",
-    fb_false: "❌ Coba pikir kembali, metode eliminasi paling cepat di sini."
+    q: "Rana beli 4 buku,2 pulpen,3 pensil=Rp26.000; Lisa 3 buku,3 pulpen,1 pensil=Rp21.000; Nina 3 buku,1 pensil=Rp12.000. Jika Raya beli 2 pulpen & 3 pensil, harga yang dibayar adalah ...",
+    options: ["Rp26.000","Rp21.000","Rp18.000","Rp12.000","Rp8.600"],
+    answer: 1, cat: "Modeling",
+    fb_true: "✅ Benar — total Rp21.000.",
+    fb_false: "❌ Salah — periksa kembali bentuk SPLTV-nya."
   },
-
-  // ===== MODELING LANJUT =====
   {
     id: 13, type: "mcq",
-    q: "Untuk memodelkan harga tiga jenis tiket bioskop berbeda, SPLTV digunakan agar...",
-    options: ["Menentukan harga tiap jenis tiket", "Menentukan total pengunjung", "Menentukan jam tayang film"],
-    answer: 0, cat: "Modeling",
-    fb_true: "✅ Benar — SPLTV dapat digunakan untuk mencari nilai tiap harga tiket.",
-    fb_false: "❌ Salah — fokus SPLTV adalah mencari nilai variabel, bukan jumlah penonton."
+    q: "Ibu Sonia beli 5 kg telur,2 kg daging,1 kg udang=Rp265.000; Ibu Bandang 3 kg telur,1 kg daging=Rp126.000; Ibu Sinta 3 kg daging,2 kg udang=Rp320.000. Jika Ibu Ami beli 2 kg telur,1 kg daging,1 kg udang, maka ia membayar ...",
+    options: ["Rp197.000","Rp174.000","Rp184.000","Rp218.000","Rp210.000"],
+    answer: 3, cat: "Perhitungan",
+    fb_true: "✅ Tepat — total Rp218.000.",
+    fb_false: "❌ Salah — bentuk sistem sesuai data pembelian."
   },
-
-  // ===== PERHITUNGAN LANJUT =====
   {
     id: 14, type: "mcq",
-    q: "Dari SPLTV: 2x + 3y + z = 14; x + 2y + 3z = 16; 3x + y + 2z = 13. Nilai y adalah...",
-    options: ["2", "3", "4", "5"],
-    answer: 2, cat: "Perhitungan",
-    fb_true: "✅ Bagus — setelah eliminasi, nilai y = 4.",
-    fb_false: "❌ Salah — lakukan pengurangan antar persamaan."
+    q: "Bu Riani beli 5 kg Grade A,2 kg Grade B,3 kg Grade C=Rp132.000; Bu Irma beli 7 kg Grade B,3 kg Grade C=Rp127.000; Bu Lina beli 3 kg Grade B=Rp39.000. Harga beras Grade A per kg adalah ...",
+    options: ["Rp12.000","Rp13.000","Rp14.000","Rp15.000","Rp16.000"],
+    answer: 1, cat: "Modeling",
+    fb_true: "✅ Benar — harga Grade A = Rp13.000/kg.",
+    fb_false: "❌ Salah — pastikan koefisien tiap variabel benar."
   },
-
- // ===== BELAJAR EFEKTIF =====
-{
-  id: 15,
-  type: "mcq",
-  q: "Menurutmu, cara belajar yang paling membantu agar kamu lebih cepat memahami materi SPLTV adalah...",
-  options: [
-    "Mengingat rumus dan contoh tanpa memahami maknanya",
-    "Memahami soal melalui contoh kehidupan sehari-hari dan berdiskusi dengan teman",
-    "Langsung mengerjakan banyak soal tanpa melihat penjelasan",
-    "Menyalin jawaban dari teman tanpa mencoba sendiri"
-  ],
-  answer: 1,
-  cat: "Strategi Belajar",
-  fb_true: "✅ Bagus sekali! Belajar dengan memahami contoh kehidupan sehari-hari dan berdiskusi membuatmu lebih mudah mengerti bagaimana SPLTV digunakan dalam situasi nyata.",
-  fb_false: "❌ Belum tepat. Coba pilih cara belajar yang membuat kamu aktif berpikir, berdiskusi, dan memahami makna di balik rumus. Dengan begitu, kamu akan lebih cepat menguasai SPLTV."
-}
-
+  {
+    id: 15, type: "mcq",
+    q: "Penjahit butuh 2m kain A,1m B,3m C=Rp106.000; 1m A,2m B,1m C=Rp64.000; 3m A,2m B,1m C=Rp90.000. Berapakah harga kain A,B,C per meter?",
+    options: [
+      "Rp12.000;Rp15.000;Rp17.000",
+      "Rp13.000;Rp14.000;Rp19.000",
+      "Rp14.000;Rp15.000;Rp16.000",
+      "Rp15.000;Rp17.000;Rp18.000",
+      "Rp16.000;Rp19.000;Rp20.000"
+    ],
+    answer: 0, cat: "Perhitungan",
+    fb_true: "✅ Tepat — kain A=Rp12.000, B=Rp15.000, C=Rp17.000/m.",
+    fb_false: "❌ Salah — periksa kembali hasil eliminasi."
+  }
 ];
 
 // ==========================
 // FUNGSI UTAMA
 // ==========================
+let startTime, endTime;
+
 function startTest() {
   const name = document.getElementById("studentName").value.trim();
   const cls = document.getElementById("studentClass").value.trim();
@@ -304,88 +293,21 @@ function finishAndShowResults() {
     resultHTML += `<p><b>${q.id}. ${q.q}</b><br>${correct ? q.fb_true : q.fb_false}</p>`;
   });
 
-  // ===============================
-// ✨ Analisis Hasil & Rekomendasi Detail
-// ===============================
-let analysis = "<h3>Analisis Hasil Belajar:</h3><ul>";
-
-for (let cat in catScores) {
-  const cs = catScores[cat];
-  const rate = Math.round((cs.correct / cs.total) * 100);
-  let desc = "";
-  let mastery = "";
-  let suggestion = "";
-
-  if (rate >= 85) {
-    mastery = "✅ Sangat Baik";
-    desc = "Kamu sudah menguasai materi ini dengan sangat baik. Pemahamanmu kuat dan langkah-langkahmu dalam menyelesaikan soal sudah tepat.";
-    suggestion = "Pertahankan kemampuan ini dengan terus melatih soal yang menantang agar semakin percaya diri.";
-  } 
-  else if (rate >= 70) {
-    mastery = "🟡 Cukup Baik";
-    desc = "Kamu sudah memahami dasar materi ini, namun masih perlu latihan untuk meningkatkan ketepatan dan kecepatan dalam menjawab soal.";
-    suggestion = "Ulangi latihan dengan memperhatikan langkah penyelesaian dan pahami alasan di balik setiap operasi yang kamu lakukan.";
-  } 
-  else if (rate >= 50) {
-    mastery = "🟠 Perlu Ditingkatkan";
-    desc = "Kamu sudah mencoba memahami bagian ini, tapi masih sering keliru. Mungkin kamu perlu lebih banyak contoh konkret dan latihan tambahan.";
-    suggestion = "Cobalah belajar bersama teman atau tanyakan ke guru tentang langkah-langkah yang belum kamu pahami.";
-  } 
-  else {
-    mastery = "🔴 Perlu Perhatian Khusus";
-    desc = "Kamu masih kesulitan pada bagian ini. Tidak apa-apa — ini saatnya memperbaiki pemahaman dari awal dengan bantuan guru atau sumber belajar lain.";
-    suggestion = "Pelajari ulang konsep dasarnya dari contoh sederhana, lalu coba lagi soal yang mirip dengan bimbingan guru atau video pembelajaran.";
+  let analysis = "<h3>Analisis Hasil Belajar:</h3><ul>";
+  for (let cat in catScores) {
+    const cs = catScores[cat];
+    const rate = Math.round((cs.correct / cs.total) * 100);
+    let mastery = rate >= 85 ? "✅ Sangat Baik" : rate >= 70 ? "🟡 Cukup" : rate >= 50 ? "🟠 Perlu Ditingkatkan" : "🔴 Perlu Perhatian";
+    analysis += `<li><b>${cat}</b>: ${mastery} (${rate}% benar)</li>`;
   }
-
-  // Penjelasan per kategori
-  let detail = "";
-  switch (cat) {
-    case "Modeling":
-      detail = "Kemampuan ini berkaitan dengan cara mengubah cerita menjadi bentuk persamaan SPLTV. Fokus pada mengenali variabel dan menulis hubungan antar besaran dengan tepat.";
-      break;
-    case "Perhitungan":
-      detail = "Bagian ini mengukur ketepatanmu dalam menghitung nilai x, y, dan z menggunakan metode eliminasi atau substitusi. Perhatikan langkah agar tidak salah hitung.";
-      break;
-    case "Konsep":
-      detail = "Kemampuan ini berhubungan dengan pemahaman dasar tentang arti SPLTV, jumlah persamaan dan variabel, serta bentuk umumnya.";
-      break;
-    case "Strategi":
-      detail = "Bagian ini melihat kemampuanmu memilih cara penyelesaian paling efisien, misalnya kapan harus menggunakan eliminasi atau substitusi.";
-      break;
-   case "Strategi Belajar":
-      detail = "Kategori ini menilai bagaimana kamu memilih cara belajar yang paling efektif untuk memahami SPLTV. Fokusnya adalah pada bagaimana kamu menggunakan contoh, berdiskusi, dan berlatih dengan cara yang membuatmu benar-benar paham, bukan sekadar menghafal rumus.";
-      break;
-
-  }
-
-  analysis += `
-    <li>
-      <b>${cat}</b> — <i>${mastery}</i> (${rate}% benar)<br>
-      <span style="color:#333;">${desc}</span><br>
-      <u>Penjelasan:</u> ${detail}<br>
-      <u>Saran:</u> ${suggestion}
-    </li><br>
-  `;
-}
-
-analysis += "</ul>";
-
-
-  const rekom = `
-  <h3>Rekomendasi Belajar:</h3>
-  <p>📘 <b>Modeling</b>: Latih mengubah soal cerita menjadi bentuk persamaan.</p>
-  <p>🔢 <b>Perhitungan</b>: Ulangi latihan substitusi & eliminasi langkah demi langkah.</p>
-  <p>💡 <b>Konsep</b>: Pahami makna tiap variabel dan hubungan antar persamaan.</p>
-  <p>🎯 <b>Strategi</b>: Coba metode eliminasi bila koefisien mudah disejajarkan.</p>
-  <p>👩‍🏫 <b>Strategi Belajar</b>: Gunakan konteks nyata agar siswa mudah memahami SPLTV.</p>
-  <p style='color:#1e3a8a; font-weight:500;'>Terus semangat! Latihan rutin akan membuatmu semakin percaya diri 🌟</p>`;
+  analysis += "</ul>";
 
   document.getElementById("summary").innerHTML = `
     <p><b>Nama:</b> ${document.getElementById("studentName").value}</p>
     <p><b>Kelas:</b> ${document.getElementById("studentClass").value}</p>
-    <p><b>Skor Akhir:</b> ${score} dari ${total} soal (${Math.round((score/total)*100)}%)</p>
-    <p><b>Waktu Pengerjaan:</b> ${minutes} menit ${seconds} detik</p>
-    ${analysis}${rekom}<hr>${resultHTML}
+    <p><b>Skor Akhir:</b> ${score} dari ${total} (${Math.round((score/total)*100)}%)</p>
+    <p><b>Waktu:</b> ${minutes} menit ${seconds} detik</p>
+    ${analysis}<hr>${resultHTML}
   `;
 
   document.getElementById("quizSection").classList.add("hidden");
