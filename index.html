@@ -221,21 +221,21 @@ const QUESTIONS = [
     fb_false: "❌ Salah — lakukan pengurangan antar persamaan."
   },
 
-  // ===== PEDAGOGI =====
- {
+ // ===== BELAJAR EFEKTIF =====
+{
   id: 15,
   type: "mcq",
-  q: "Kalau kamu menjadi guru matematika, cara apa yang paling baik untuk membantu teman-teman memahami materi SPLTV?",
+  q: "Menurutmu, cara belajar yang paling membantu agar kamu lebih cepat memahami materi SPLTV adalah...",
   options: [
-    "Langsung memberi rumus dan contoh jadi",
-    "Mengajak siswa memecahkan masalah sehari-hari dan berdiskusi bersama",
-    "Memberi banyak latihan hitungan tanpa penjelasan",
-    "Menyuruh siswa menyalin contoh dari papan tulis"
+    "Mengingat rumus dan contoh tanpa memahami maknanya",
+    "Memahami soal melalui contoh kehidupan sehari-hari dan berdiskusi dengan teman",
+    "Langsung mengerjakan banyak soal tanpa melihat penjelasan",
+    "Menyalin jawaban dari teman tanpa mencoba sendiri"
   ],
   answer: 1,
-  cat: "Pedagogi",
-  fb_true: "✅ Hebat! Kamu memilih cara yang paling baik. Dengan mengajak siswa memecahkan masalah dari kehidupan sehari-hari dan berdiskusi, mereka akan lebih paham makna dari setiap langkah penyelesaian SPLTV.",
-  fb_false: "❌ Belum tepat. Coba pilih cara yang membuat siswa aktif berpikir dan menghubungkan pelajaran dengan kehidupan nyata. Dengan begitu, belajar akan terasa lebih mudah dan menyenangkan."
+  cat: "Strategi Belajar",
+  fb_true: "✅ Bagus sekali! Belajar dengan memahami contoh kehidupan sehari-hari dan berdiskusi membuatmu lebih mudah mengerti bagaimana SPLTV digunakan dalam situasi nyata.",
+  fb_false: "❌ Belum tepat. Coba pilih cara belajar yang membuat kamu aktif berpikir, berdiskusi, dan memahami makna di balik rumus. Dengan begitu, kamu akan lebih cepat menguasai SPLTV."
 }
 
 ];
@@ -352,9 +352,10 @@ for (let cat in catScores) {
     case "Strategi":
       detail = "Bagian ini melihat kemampuanmu memilih cara penyelesaian paling efisien, misalnya kapan harus menggunakan eliminasi atau substitusi.";
       break;
-    case "Pedagogi":
-      detail = "Kategori ini menilai bagaimana kamu memahami cara terbaik mengajarkan atau menjelaskan SPLTV agar mudah dipahami oleh orang lain.";
+   case "Strategi Belajar":
+      detail = "Kategori ini menilai bagaimana kamu memilih cara belajar yang paling efektif untuk memahami SPLTV. Fokusnya adalah pada bagaimana kamu menggunakan contoh, berdiskusi, dan berlatih dengan cara yang membuatmu benar-benar paham, bukan sekadar menghafal rumus.";
       break;
+
   }
 
   analysis += `
@@ -376,7 +377,7 @@ analysis += "</ul>";
   <p>🔢 <b>Perhitungan</b>: Ulangi latihan substitusi & eliminasi langkah demi langkah.</p>
   <p>💡 <b>Konsep</b>: Pahami makna tiap variabel dan hubungan antar persamaan.</p>
   <p>🎯 <b>Strategi</b>: Coba metode eliminasi bila koefisien mudah disejajarkan.</p>
-  <p>👩‍🏫 <b>Pedagogi</b>: Gunakan konteks nyata agar siswa mudah memahami SPLTV.</p>
+  <p>👩‍🏫 <b>Strategi Belajar</b>: Gunakan konteks nyata agar siswa mudah memahami SPLTV.</p>
   <p style='color:#1e3a8a; font-weight:500;'>Terus semangat! Latihan rutin akan membuatmu semakin percaya diri 🌟</p>`;
 
   document.getElementById("summary").innerHTML = `
