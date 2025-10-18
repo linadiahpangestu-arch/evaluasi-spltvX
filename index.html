@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Evaluasi Sistem Persamaan Linear Tiga Variabel (SPLTV) Kelas X - disusun oleh: Lina Diah Pangestu</title>
+<title>Evaluasi Sistem Persamaan Linear Tiga Variabel (SPLTV) Kelas X </title>
 <style>
 body {
   font-family: "Segoe UI", sans-serif;
@@ -12,14 +12,14 @@ body {
   padding: 20px;
 }
 .container {
-  max-width: 850px;
+  max-width: 900px;
   margin: auto;
   background: #fff;
   border-radius: 12px;
   padding: 20px 30px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
-h1, h2 {
+h1, h2, h3 {
   text-align: center;
   color: #2a4d69;
 }
@@ -35,9 +35,16 @@ button:hover { background: #4b86b4; }
 .hidden { display: none; }
 .question {
   border-bottom: 1px solid #ddd;
-  padding: 10px 0;
+  padding: 15px 0;
+  line-height: 1.6;
 }
-.feedback { margin-top: 5px; font-style: italic; }
+.question p {
+margin-bottom: 8px;
+}
+.feedback {
+  margin-top: 5px;
+  font-style: italic;
+}
 #summary {
   background: #eef6fb;
   border-radius: 10px;
@@ -54,28 +61,41 @@ button:hover { background: #4b86b4; }
 }
 #petunjuk h2 { color: #2a4d69; margin-bottom: 10px; }
 #petunjuk p { color: #333; line-height: 1.5; }
+input[type=text] {
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+label { display: block; margin: 4px 0; }
 </style>
 </head>
 <body>
 <div class="container">
-  <h1>Evaluasi Sistem Persamaan Linear Tiga Variabel (SPLTV) Kelas X<br>
-  <small>Disusun oleh: Lina Diah Pangestu</small></h1>
-
+  <h1>Evaluasi Sistem Persamaan Linear Tiga Variabel (SPLTV) Kelas X<h1>
+  
   <div id="intro">
+     <!-- Petunjuk & Motivasi -->
     <section id="petunjuk">
       <h2>Petunjuk & Motivasi</h2>
       <p>
-        Kerjakan <strong>15 soal</strong> berikut (campuran pilihan ganda & isian singkat).<br>
-        Setelah semua soal dikerjakan, klik <em><strong>"Selesai & Lihat Hasil"</strong></em> untuk melihat skor dan analisis otomatis.
+        Kerjakan <strong>15 soal</strong> pilihan ganda berikut.<br>
+        Berdo'alah sebelum mengerjakan, lalu klik
+        <em><strong>"Selesai & Lihat Hasil"</strong></em> setelah selesai.<br>
+        Jawaban akan dinilai otomatis.
       </p>
       <p style="color:#1d4ed8; font-weight:500;">
         Kerjakan dengan jujur dan percaya diri — kamu pasti bisa! 💪✨
       </p>
     </section>
 
-    <p>Masukkan data diri terlebih dahulu:</p>
-    <label>Nama: <input type="text" id="studentName" required></label><br><br>
-    <label>Kelas: <input type="text" id="studentClass" required></label><br><br>
+    <p>Masukkan data diri:</p>
+    <label>Nama:
+      <input type="text" id="studentName" autocomplete="off" placeholder="Tuliskan nama lengkap">
+    </label>
+    <label>Kelas:
+      <input type="text" id="studentClass" autocomplete="off" placeholder="Contoh: X IPA 1">
+    </label>
+    <br>
     <button onclick="startTest()">Mulai Evaluasi</button>
   </div>
 
@@ -91,8 +111,10 @@ button:hover { background: #4b86b4; }
 
 <script>
 // ==========================
-// DATA SOAL (15 Soal SPLTV)
+// TIMER & DATA SOAL
 // ==========================
+let startTime, endTime;
+
 const QUESTIONS = [
   // Soal 1–3
   {
@@ -242,20 +264,24 @@ function startTest() {
 
 function showQuestions() {
   const quizDiv = document.getElementById("quizSection");
-  quizDiv.innerHTML = "";
+   quizDiv.innerHTML = "<h2>Soal Evaluasi</h2>";
+  
   QUESTIONS.forEach((q, i) => {
-    let html = `<div class='question'><p><b>${i + 1}. ${q.q}</b></p>`;
+    let html = `<div class='question'>
+        <p><b>${i + 1}. ${q.q}</b></p><div class='options'>`;
+    
     if (q.type === "mcq") {
       q.options.forEach((opt, idx) => {
-        html += `<label><input type='radio' name='q${q.id}' value='${idx}'> ${opt}</label><br>`;
+        html += `<label><input type='radio' name='q${q.id}' value='${idx}'> ${opt}</label>`;
       });
     } else {
       html += `<input type='text' id='q${q.id}' placeholder='Ketik jawaban...'>`;
     }
-    html += `</div>`;
+     html += `</div></div>`;
     quizDiv.innerHTML += html;
   });
-  quizDiv.innerHTML += `<br><button onclick='finishAndShowResults()'>Selesai & Lihat Hasil</button>`;
+  
+  quizDiv.innerHTML += `<br><center><button onclick='finishAndShowResults()'>Selesai & Lihat Hasil</button></center>`;
   quizDiv.classList.remove("hidden");
 }
 
@@ -270,43 +296,120 @@ function finishAndShowResults() {
   let catScores = {};
   let resultHTML = "";
 
-  QUESTIONS.forEach(q => {
+  QUESTIONS.forEach((q) => {
     let correct = false;
-    let userAns;
+    let userAns = "";
+    let userAnsText = "";
 
     if (q.type === "mcq") {
       const sel = document.querySelector(`input[name='q${q.id}']:checked`);
-      userAns = sel ? parseInt(sel.value) : null;
-      correct = (userAns === q.answer);
+      if (sel) {
+        userAns = parseInt(sel.value);
+        userAnsText = q.options[userAns];
+        correct = (userAns === q.answer);
+      } else {
+        userAnsText = "(belum dijawab)";
+      }
     } else {
       const inp = document.getElementById(`q${q.id}`);
       userAns = inp ? inp.value.trim().toLowerCase() : "";
       correct = (userAns === q.answer.toLowerCase());
+      userAnsText = inp.value || "(belum dijawab)";
     }
-
+    
     if (correct) score++;
     if (!catScores[q.cat]) catScores[q.cat] = { correct: 0, total: 0 };
     catScores[q.cat].total++;
     if (correct) catScores[q.cat].correct++;
 
-    resultHTML += `<p><b>${q.id}. ${q.q}</b><br>${correct ? q.fb_true : q.fb_false}</p>`;
+    const correctAnsText = q.options ? q.options[q.answer] : q.answer;
+
+    resultHTML +=
+       <div style='margin-bottom:15px;'>
+        <p><b>${q.id}. ${q.q}</b></p>
+        <p><b>Jawabanmu:</b> ${userAnsText}</p>
+        <p><b>Jawaban benar:</b> ${correctAnsText}</p>
+        <p>${correct ? q.fb_true : q.fb_false}</p>
+        <details style="margin-left:10px;">
+          <summary><b>📘 Cara Penyelesaian</b></summary>
+          <p>${q.work}</p>
+        </details>
+      </div>
+    `;
   });
 
+  // ===============================
+  // ✨ Analisis Hasil & Rekomendasi Detail
+  // ===============================
   let analysis = "<h3>Analisis Hasil Belajar:</h3><ul>";
+  
   for (let cat in catScores) {
     const cs = catScores[cat];
     const rate = Math.round((cs.correct / cs.total) * 100);
-    let mastery = rate >= 85 ? "✅ Sangat Baik" : rate >= 70 ? "🟡 Cukup" : rate >= 50 ? "🟠 Perlu Ditingkatkan" : "🔴 Perlu Perhatian";
-    analysis += `<li><b>${cat}</b>: ${mastery} (${rate}% benar)</li>`;
+     let mastery = "", desc = "", suggestion = "";
+
+     if (rate >= 85) {
+      mastery = "✅ Sangat Baik";
+      desc = "Pemahamanmu kuat dan langkah penyelesaianmu sudah sistematis.";
+      suggestion = "Pertahankan kemampuan ini dengan latihan soal bervariasi agar semakin matang.";
+    } else if (rate >= 70) {
+      mastery = "🟡 Cukup Baik";
+      desc = "Kamu memahami konsep dasar, namun masih ada kekeliruan kecil.";
+      suggestion = "Ulangi latihan soal dan perhatikan kesalahan kecil agar makin teliti.";
+    } else if (rate >= 50) {
+      mastery = "🟠 Perlu Ditingkatkan";
+      desc = "Pemahamanmu masih setengah, perlu memperkuat langkah-langkah eliminasi dan substitusi.";
+      suggestion = "Tonton video pembelajaran atau minta penjelasan guru tentang tahapan penyelesaian SPLTV.";
+    } else {
+      mastery = "🔴 Perlu Perhatian Khusus";
+      desc = "Kamu masih kesulitan dalam memahami konsep dasar SPLTV.";
+      suggestion = "Pelajari ulang dari soal sederhana dan coba menuliskan model matematikanya terlebih dahulu.";
+    }
+
+    let detail = "";
+    switch (cat) {
+      case "Modeling":
+        detail = "Kemampuan mengubah soal cerita menjadi sistem persamaan linear tiga variabel yang sesuai dengan konteks.";
+        break;
+      case "Perhitungan":
+        detail = "Kemampuan melakukan operasi eliminasi, substitusi, dan kalkulasi numerik secara akurat.";
+        break;
+      case "Konsep":
+        detail = "Pemahaman struktur dasar SPLTV dan arti solusi dalam konteks permasalahan.";
+        break;
+    }
+     
+    analysis +=
+    <li>
+    <b>${cat}</b>-<i>${mastery}</i> (${rate}% benar)<br>
+    ${desc}<br>
+    <u>Penjelasan:</u> ${detail}<br>
+        <u>Saran:</u> ${suggestion}
+      </li><br>
+    `;
   }
+  
   analysis += "</ul>";
+
+  const rekom = `
+  <h3>Rekomendasi Umum:</h3>
+  <ul>
+    <li>📘 <b>Modeling:</b> Latih kemampuan membaca soal cerita dengan teliti dan menuliskannya menjadi bentuk persamaan.</li>
+    <li>🔢 <b>Perhitungan:</b> Fokus pada ketelitian langkah demi langkah dalam proses eliminasi dan substitusi.</li>
+    <li>💡 <b>Konsep:</b> Pahami makna tiap variabel serta hubungan antara tiga persamaan dan tiga variabel.</li>
+    <li>📈 <b>Strategi Belajar:</b> Buat ringkasan rumus SPLTV dan berlatih minimal 10 soal tambahan tiap minggu.</li>
+    <li>🤝 <b>Kerjasama:</b> Diskusikan hasil evaluasi ini bersama teman atau guru untuk memperbaiki pemahaman.</li>
+  </ul>
+  <p style='color:#1e3a8a; font-weight:500;'>Terus semangat! Setiap latihan membawamu lebih dekat pada penguasaan penuh SPLTV 🌟</p>`;
 
   document.getElementById("summary").innerHTML = `
     <p><b>Nama:</b> ${document.getElementById("studentName").value}</p>
     <p><b>Kelas:</b> ${document.getElementById("studentClass").value}</p>
-    <p><b>Skor Akhir:</b> ${score} dari ${total} (${Math.round((score/total)*100)}%)</p>
-    <p><b>Waktu:</b> ${minutes} menit ${seconds} detik</p>
-    ${analysis}<hr>${resultHTML}
+    <p><b>Skor Akhir:</b> ${score} dari ${total} soal (${Math.round((score / total) * 100)}%)</p>
+    <p><b>Waktu Pengerjaan:</b> ${minutes} menit ${seconds} detik</p>
+    ${analysis}${rekom}<hr>
+    <h3>📊 Detail Hasil Setiap Soal:</h3>
+    ${resultHTML}
   `;
 
   document.getElementById("quizSection").classList.add("hidden");
