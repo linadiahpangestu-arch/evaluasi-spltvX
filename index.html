@@ -434,7 +434,7 @@ function finishAndShowResults() {
 
     const correctAnsText = q.options ? q.options[q.answer] : q.answer;
 
-    resultHTML +=
+    resultHTML +=`
        <div style='margin-bottom:15px;'>
         <p><b>${q.id}. ${q.q}</b></p>
         <p><b>Jawabanmu:</b> ${userAnsText}</p>
@@ -489,7 +489,7 @@ function finishAndShowResults() {
         break;
     }
      
-    analysis +=
+    analysis +=`
     <li>
     <b>${cat}</b>-<i>${mastery}</i> (${rate}% benar)<br>
     ${desc}<br>
