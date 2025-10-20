@@ -4,6 +4,8 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Evaluasi Sistem Persamaan Linear Tiga Variabel (SPLTV) Kelas X </title>
+  <p>disusun oleh: Lina Diah Pangestu</p>
+
 <style>
 body {
   font-family: "Segoe UI", sans-serif;
@@ -12,7 +14,7 @@ body {
   padding: 20px;
 }
 .container {
-  max-width: 900px;
+  max-width: 850px;
   margin: auto;
   background: #fff;
   border-radius: 12px;
@@ -36,10 +38,6 @@ button:hover { background: #4b86b4; }
 .question {
   border-bottom: 1px solid #ddd;
   padding: 15px 0;
-  line-height: 1.6;
-}
-.question p {
-margin-bottom: 8px;
 }
 .feedback {
   margin-top: 5px;
@@ -61,30 +59,25 @@ margin-bottom: 8px;
 }
 #petunjuk h2 { color: #2a4d69; margin-bottom: 10px; }
 #petunjuk p { color: #333; line-height: 1.5; }
-input[type=text] {
-  padding: 6px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-}
-label { display: block; margin: 4px 0; }
 </style>
 </head>
 <body>
 <div class="container">
   <h1>Evaluasi Sistem Persamaan Linear Tiga Variabel (SPLTV) Kelas X<h1>
-  
+  <p>disusun oleh: Lina Diah Pangestu</p>
+    
   <div id="intro">
      <!-- Petunjuk & Motivasi -->
     <section id="petunjuk">
       <h2>Petunjuk & Motivasi</h2>
       <p>
         Kerjakan <strong>15 soal</strong> pilihan ganda berikut.<br>
-        Berdo'alah sebelum mengerjakan, lalu klik
-        <em><strong>"Selesai & Lihat Hasil"</strong></em> setelah selesai.<br>
+        Berdo'alah sebelum mengerjakan. Selesaikan semua, lalu klik
+        <em><strong>"Selesai & Lihat Hasil"</strong></em>.<br>
         Jawaban akan dinilai otomatis.
       </p>
       <p style="color:#1d4ed8; font-weight:500;">
-        Kerjakan dengan jujur dan percaya diri — kamu pasti bisa! 💪✨
+        Kerjakan dengan jujur dan percaya diri — kamu pasti bisa! 💪✨<br>
       </p>
     </section>
 
@@ -374,12 +367,9 @@ function startTest() {
 
 function showQuestions() {
   const quizDiv = document.getElementById("quizSection");
-   quizDiv.innerHTML = "<h2>Soal Evaluasi</h2>";
-  
+   quizDiv.innerHTML = "";
   QUESTIONS.forEach((q, i) => {
-    let html = `<div class='question'>
-        <p><b>${i + 1}. ${q.q}</b></p><div class='options'>`;
-    
+   let html = `<div class='question'><p><b>${i + 1}. ${q.q}</b></p>`;
     if (q.type === "mcq") {
       q.options.forEach((opt, idx) => {
         html += `<label><input type='radio' name='q${q.id}' value='${idx}'> ${opt}</label>`;
@@ -387,11 +377,10 @@ function showQuestions() {
     } else {
       html += `<input type='text' id='q${q.id}' placeholder='Ketik jawaban...'>`;
     }
-     html += `</div></div>`;
+     html += `</div>`;
     quizDiv.innerHTML += html;
   });
-  
-  quizDiv.innerHTML += `<br><center><button onclick='finishAndShowResults()'>Selesai & Lihat Hasil</button></center>`;
+   quizDiv.innerHTML += `<br><button onclick='finishAndShowResults()'>Selesai & Lihat Hasil</button>`;
   quizDiv.classList.remove("hidden");
 }
 
@@ -409,7 +398,6 @@ function finishAndShowResults() {
   QUESTIONS.forEach((q) => {
     let correct = false;
     let userAns = "";
-    let userAnsText = "";
 
     if (q.type === "mcq") {
       const sel = document.querySelector(`input[name='q${q.id}']:checked`);
